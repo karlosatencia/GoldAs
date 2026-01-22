@@ -10,8 +10,8 @@ Public Class Registro
     Dim CamposPircingValidados As Boolean
     Dim conn As MySql.Data.MySqlClient.MySqlConnection
     'Private conexion As MySql.Data.MySqlClient.MySqlConnection = New MySql.Data.MySqlClient.MySqlConnection("server=localhost;user=karlosatencia;password=karlos63527;database=goldmanager")
-    Private conexion As MySql.Data.MySqlClient.MySqlConnection = New MySql.Data.MySqlClient.MySqlConnection("server=sh00002.hostgator.co;user=cdcbfeba_adminelite;password=Safrat2583;database=cdcbfeba_goldmanagerelite;port=3306")
-    '("server=shared20.hostgator.co;user=elitejo1_adminelite;password=Safrat2583;database=elitejo1_goldmanagerelite;port=3306")
+    Private conexion As MySql.Data.MySqlClient.MySqlConnection = New MySql.Data.MySqlClient.MySqlConnection("server=shared22.hostgator.co;user=joyeriai_admingold;password=Sebitas1911$;database=joyeriai_goldIconiq;port=3306")
+
 
     'Evento personalizado
     Public Event NuevaInsercionRealizada()
@@ -774,7 +774,6 @@ Public Class Registro
             End If
 
             Dim nombre_compuesto As String = jt_nombre_compuesto.Text
-            'nombre_compuesto = nombre_compuesto.ToUpper()
 
             ' Consulta a la tabla tiposdeproducto para obtener el valor de id_categoria
             Dim id_categoria As Integer
@@ -853,32 +852,53 @@ Public Class Registro
             If conexion.State = ConnectionState.Closed Then
                 conexion.Open()
             End If
-            Using cmdRef As New MySql.Data.MySqlClient.MySqlCommand("SELECT MAX(CAST(SUBSTRING(referencia, 2) AS SIGNED)) 
-            FROM productos
-            WHERE sucursal = @idsucursal
-            AND referencia NOT LIKE 'B%';
-            ", conexion)
+
+            'Using cmdRef As New MySql.Data.MySqlClient.MySqlCommand("SELECT MAX(CAST(SUBSTRING(referencia, 2) AS SIGNED)) 
+            'FROM productos
+            'WHERE sucursal = @idsucursal
+            'AND referencia NOT LIKE 'B%';
+            '", conexion)
+            '    cmdRef.Parameters.AddWithValue("@idsucursal", id_sucursal)
+            '    Dim resultado As Object = cmdRef.ExecuteScalar()
+            '    If resultado IsNot DBNull.Value Then
+            '        ultima_referencia = Convert.ToInt32(resultado)
+            '    Else
+            '        ultima_referencia = 0
+            '    End If
+            'End Using
+
+            '' Incrementar el número de referencia
+            'ultima_referencia += 1
+
+            Using cmdRef As New MySql.Data.MySqlClient.MySqlCommand(
+                "SELECT MAX(CAST(referencia AS SIGNED))
+                FROM productos
+                WHERE sucursal = @idsucursal;", conexion)
+
                 cmdRef.Parameters.AddWithValue("@idsucursal", id_sucursal)
+
                 Dim resultado As Object = cmdRef.ExecuteScalar()
-                If resultado IsNot DBNull.Value Then
+
+                If resultado IsNot DBNull.Value AndAlso resultado IsNot Nothing Then
                     ultima_referencia = Convert.ToInt32(resultado)
-                Else
-                    ultima_referencia = 0
                 End If
             End Using
 
-            ' Incrementar el número de referencia
-            ultima_referencia += 1
+            ' Incrementar referencia
+            Dim nueva_referencia As Integer
+            If id_sucursal = 1 Then
+                nueva_referencia = ultima_referencia + 1
+            End If
 
             ' Construir la nueva referencia según la lógica establecida
-            Dim nueva_referencia As String
-            If id_sucursal = 1 Then
-                nueva_referencia = "E" & ultima_referencia
-            ElseIf id_sucursal = 2 Then
-                nueva_referencia = "D" & ultima_referencia
-            Else
-                nueva_referencia = "Otro" & ultima_referencia
-            End If
+            'Dim nueva_referencia As String
+            'If id_sucursal = 1 Then
+            '    nueva_referencia = "E" & ultima_referencia
+            'ElseIf id_sucursal = 2 Then
+            '    nueva_referencia = "D" & ultima_referencia
+            'Else
+            '    nueva_referencia = "Otro" & ultima_referencia
+            'End If
 
             ' Inserción de datos en la tabla productos
             If Not ch_adicional.Checked Then
@@ -1051,84 +1071,104 @@ Public Class Registro
             If conexion.State = ConnectionState.Closed Then
                 conexion.Open()
             End If
-            Using cmdRef As New MySql.Data.MySqlClient.MySqlCommand("SELECT MAX(CAST(SUBSTRING(referencia, 2) AS SIGNED)) 
-            FROM productos
-            WHERE sucursal = @idsucursal
-            AND referencia NOT LIKE 'B%';", conexion)
+
+            'Using cmdRef As New MySql.Data.MySqlClient.MySqlCommand("SELECT MAX(CAST(SUBSTRING(referencia, 2) AS SIGNED)) 
+            'FROM productos
+            'WHERE sucursal = @idsucursal
+            'AND referencia NOT LIKE 'B%';", conexion)
+            '    cmdRef.Parameters.AddWithValue("@idsucursal", id_sucursal)
+            '    Dim resultado As Object = cmdRef.ExecuteScalar()
+            '    If resultado IsNot DBNull.Value Then
+            '        ultima_referencia = Convert.ToInt32(resultado)
+            '    Else
+            '        ultima_referencia = 0
+            '    End If
+            'End Using
+
+            ' Incrementar el número de referencia
+            'ultima_referencia += 1
+            Using cmdRef As New MySql.Data.MySqlClient.MySqlCommand(
+                "SELECT MAX(CAST(referencia AS SIGNED))
+                FROM productos
+                WHERE sucursal = @idsucursal;", conexion)
+
                 cmdRef.Parameters.AddWithValue("@idsucursal", id_sucursal)
+
                 Dim resultado As Object = cmdRef.ExecuteScalar()
-                If resultado IsNot DBNull.Value Then
+
+                If resultado IsNot DBNull.Value AndAlso resultado IsNot Nothing Then
                     ultima_referencia = Convert.ToInt32(resultado)
-                Else
-                    ultima_referencia = 0
                 End If
             End Using
 
-            ' Incrementar el número de referencia
-            ultima_referencia += 1
+            ' Incrementar referencia
+            Dim nueva_referencia As Integer
+            If id_sucursal = 1 Then
+                nueva_referencia = ultima_referencia + 1
+            End If
 
             ' Construir la nueva referencia según la lógica establecida
-            Dim nueva_referencia As String
-            If id_sucursal = 1 Then
-                nueva_referencia = "E" & ultima_referencia
-            ElseIf id_sucursal = 2 Then
-                nueva_referencia = "D" & ultima_referencia
-            Else
-                nueva_referencia = "Otro" & ultima_referencia
-            End If
+            'Dim nueva_referencia As String
+            'If id_sucursal = 1 Then
+            '    nueva_referencia = "E" & ultima_referencia
+            'ElseIf id_sucursal = 2 Then
+            '    nueva_referencia = "D" & ultima_referencia
+            'Else
+            '    nueva_referencia = "Otro" & ultima_referencia
+            'End If
 
             ' Inserción de datos en la tabla productos
             If Not ch_adicional.Checked Then
-                Dim query As String = "INSERT INTO productos (nombre, marca, cantidad, peso, peso_total, categoria_producto, valor_unitario, costo_total, valor_gramo, valor_unitario_compra, ct, sucursal, referencia, idcompra) VALUES (@nombre, @marca, @cantidad, @peso, @peso_total, @categoria_producto, @valor_unitario, @costo_total, @valor_gramo, @valor_unitario_compra, @ct, @idsucursal, @referencia, @idcompra)"
-                Using cmd As New MySql.Data.MySqlClient.MySqlCommand(query, conexion)
-                    cmd.Parameters.AddWithValue("@nombre", nombre_compuesto)
-                    cmd.Parameters.AddWithValue("@marca", If(lst_marca.Text = "Nacional", 1, 2))
-                    cmd.Parameters.AddWithValue("@cantidad", jt_cantidad.Text)
-                    cmd.Parameters.AddWithValue("@peso", 1)
-                    cmd.Parameters.AddWithValue("@peso_total", 1)
-                    cmd.Parameters.AddWithValue("@categoria_producto", id_categoria)
-                    cmd.Parameters.AddWithValue("@valor_unitario", valor_unitario_venta)
-                    cmd.Parameters.AddWithValue("@costo_total", costo_total)
-                    cmd.Parameters.AddWithValue("@valor_gramo", 1)
-                    cmd.Parameters.AddWithValue("@valor_unitario_compra", valor_unitario_compra)
-                    cmd.Parameters.AddWithValue("@ct", "pp")
-                    cmd.Parameters.AddWithValue("@idsucursal", id_sucursal)
-                    cmd.Parameters.AddWithValue("@referencia", nueva_referencia)
-                    cmd.Parameters.AddWithValue("@idcompra", idcompra)
-                    If conexion.State = ConnectionState.Closed Then
-                        conexion.Open()
-                    End If
-                    cmd.ExecuteNonQuery()
-                End Using
-
-                ' Obtener el último id registrado
-                Dim lastInsertedId As Integer
-                Using cmd As New MySql.Data.MySqlClient.MySqlCommand("SELECT LAST_INSERT_ID()", conexion)
-                    lastInsertedId = CInt(cmd.ExecuteScalar())
-                End Using
-
-                ' Obtener la referencia asociada al último ID
-                Dim lastReference As String = ""
-                If lastInsertedId > 0 Then
-                    Dim queryRef As String = "SELECT referencia FROM productos WHERE id = @id"
-                    Using cmd As New MySqlCommand(queryRef, conexion)
-                        cmd.Parameters.AddWithValue("@id", lastInsertedId)
-                        Dim reader As MySqlDataReader = cmd.ExecuteReader()
-                        If reader.Read() Then
-                            lastReference = reader("referencia").ToString()
+                    Dim query As String = "INSERT INTO productos (nombre, marca, cantidad, peso, peso_total, categoria_producto, valor_unitario, costo_total, valor_gramo, valor_unitario_compra, ct, sucursal, referencia, idcompra) VALUES (@nombre, @marca, @cantidad, @peso, @peso_total, @categoria_producto, @valor_unitario, @costo_total, @valor_gramo, @valor_unitario_compra, @ct, @idsucursal, @referencia, @idcompra)"
+                    Using cmd As New MySql.Data.MySqlClient.MySqlCommand(query, conexion)
+                        cmd.Parameters.AddWithValue("@nombre", nombre_compuesto)
+                        cmd.Parameters.AddWithValue("@marca", If(lst_marca.Text = "Nacional", 1, 2))
+                        cmd.Parameters.AddWithValue("@cantidad", jt_cantidad.Text)
+                        cmd.Parameters.AddWithValue("@peso", 1)
+                        cmd.Parameters.AddWithValue("@peso_total", 1)
+                        cmd.Parameters.AddWithValue("@categoria_producto", id_categoria)
+                        cmd.Parameters.AddWithValue("@valor_unitario", valor_unitario_venta)
+                        cmd.Parameters.AddWithValue("@costo_total", costo_total)
+                        cmd.Parameters.AddWithValue("@valor_gramo", 1)
+                        cmd.Parameters.AddWithValue("@valor_unitario_compra", valor_unitario_compra)
+                        cmd.Parameters.AddWithValue("@ct", "pp")
+                        cmd.Parameters.AddWithValue("@idsucursal", id_sucursal)
+                        cmd.Parameters.AddWithValue("@referencia", nueva_referencia)
+                        cmd.Parameters.AddWithValue("@idcompra", idcompra)
+                        If conexion.State = ConnectionState.Closed Then
+                            conexion.Open()
                         End If
+                        cmd.ExecuteNonQuery()
                     End Using
-                End If
 
-                If Not String.IsNullOrEmpty(lastReference) Then
-                    MessageBox.Show("Producto registrado correctamente. Referencia: " & lastReference, "Registro exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Else
-                    MessageBox.Show("Producto registrado correctamente. No se pudo obtener la última referencia.", "Registro exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    ' Obtener el último id registrado
+                    Dim lastInsertedId As Integer
+                    Using cmd As New MySql.Data.MySqlClient.MySqlCommand("SELECT LAST_INSERT_ID()", conexion)
+                        lastInsertedId = CInt(cmd.ExecuteScalar())
+                    End Using
+
+                    ' Obtener la referencia asociada al último ID
+                    Dim lastReference As String = ""
+                    If lastInsertedId > 0 Then
+                        Dim queryRef As String = "SELECT referencia FROM productos WHERE id = @id"
+                        Using cmd As New MySqlCommand(queryRef, conexion)
+                            cmd.Parameters.AddWithValue("@id", lastInsertedId)
+                            Dim reader As MySqlDataReader = cmd.ExecuteReader()
+                            If reader.Read() Then
+                                lastReference = reader("referencia").ToString()
+                            End If
+                        End Using
+                    End If
+
+                    If Not String.IsNullOrEmpty(lastReference) Then
+                        MessageBox.Show("Producto registrado correctamente. Referencia: " & lastReference, "Registro exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Else
+                        MessageBox.Show("Producto registrado correctamente. No se pudo obtener la última referencia.", "Registro exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    End If
+                    lst_tipo_producto.Text = "Seleccione"
+                    lst_sucursall.Text = "Seleccione"
+                    jt_nombre_compuesto.Text = ""
                 End If
-                lst_tipo_producto.Text = "Seleccione"
-                lst_sucursall.Text = "Seleccione"
-                jt_nombre_compuesto.Text = ""
-            End If
         Catch ex As Exception
             MessageBox.Show("Error al registrar el producto: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
@@ -1384,8 +1424,8 @@ Public Class Registro
     Public Sub ActualizarPrecioBroche()
         'Dim connectionString As String = "server=localhost;user=karlosatencia;password=karlos63527;database=goldmanager"
 
-        Dim connectionString As String = "server=sh00002.hostgator.co;user=cdcbfeba_adminelite;password=Safrat2583;database=cdcbfeba_goldmanagerelite;port=3306"
-        '"server=shared20.hostgator.co;user=elitejo1_adminelite;password=Safrat2583;database=elitejo1_goldmanagerelite;port=3306"
+        Dim connectionString As String =
+            "server=shared22.hostgator.co;user=joyeriai_admingold;password=Sebitas1911$;database=joyeriai_goldIconiq;port=3306"
 
         ' Consulta para obtener el valor de gramoitaly donde ct = 'ic-1'
         Dim queryGramoitaly As String = "SELECT valor FROM gramoitaly_new WHERE ct = 'ir1-2'"
@@ -1682,7 +1722,7 @@ Public Class Registro
                     Dim handle As String = (nombre & "-" & referencia).Replace(" ", "-")
                     Dim title As String = nombre
                     Dim bodyHTML As String = nombre.ToLower()
-                    Dim vendor As String = "Elite Joyería"
+                    Dim vendor As String = "Joyería Iconiq"
                     Dim productCategory As String = "Joyería en Ropa y accesorios"
 
                     Dim marca As Integer = reader.GetInt32("marca")

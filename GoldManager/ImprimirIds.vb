@@ -3,9 +3,7 @@ Imports ClosedXML.Excel.XLPredefinedFormat
 
 Public Class ImprimirIds
     'Private conexion As MySql.Data.MySqlClient.MySqlConnection = New MySql.Data.MySqlClient.MySqlConnection("server=localhost;user=karlosatencia;password=karlos63527;database=goldmanager")
-    'Private conexion As MySql.Data.MySqlClient.MySqlConnection = New MySql.Data.MySqlClient.MySqlConnection("server=shared12.hostgator.co;user=elitejoy_jjaramillo;password=Safra2583*;database=elitejoy_goldmanagerelite;port=3306")
-    Private conexion As MySql.Data.MySqlClient.MySqlConnection = New MySql.Data.MySqlClient.MySqlConnection("server=sh00002.hostgator.co;user=cdcbfeba_adminelite;password=Safrat2583;database=cdcbfeba_goldmanagerelite;port=3306")
-    '("server=shared20.hostgator.co;user=elitejo1_adminelite;password=Safrat2583;database=elitejo1_goldmanagerelite;port=3306")
+    Private conexion As MySql.Data.MySqlClient.MySqlConnection = New MySql.Data.MySqlClient.MySqlConnection("server=shared22.hostgator.co;user=joyeriai_admingold;password=Sebitas1911$;database=joyeriai_goldIconiq;port=3306")
 
     Private Sub RangoIds_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Establecer el texto predeterminado en los textBoxes
@@ -55,10 +53,22 @@ Public Class ImprimirIds
             Return False
         End If
 
-        ' Verificar que el valor de jt_desde y jt_hasta sigan el formato correcto (letra + números)
-        Dim regex As New Text.RegularExpressions.Regex("^[A-Za-z]+\d+$")
-        If Not regex.IsMatch(jt_desde.Text) OrElse Not regex.IsMatch(jt_hasta.Text) Then
-            MessageBox.Show("Debe ingresar valores alfanuméricos válidos en ambos campos (por ejemplo, B100 o D200).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '' Verificar que el valor de jt_desde y jt_hasta sigan el formato correcto (letra + números)
+        'Dim regex As New Text.RegularExpressions.Regex("^[A-Za-z]+\d+$")
+        'If Not regex.IsMatch(jt_desde.Text) OrElse Not regex.IsMatch(jt_hasta.Text) Then
+        '    MessageBox.Show("Debe ingresar valores alfanuméricos válidos en ambos campos (por ejemplo, B100 o D200).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '    Return False
+        'End If
+
+        'Verificar que sean valores numéricos
+        Dim desde As Integer
+        Dim hasta As Integer
+
+        If Not Integer.TryParse(jt_desde.Text.Trim(), desde) _
+        OrElse Not Integer.TryParse(jt_hasta.Text.Trim(), hasta) Then
+
+            MessageBox.Show("Los valores 'Desde' y 'Hasta' deben ser numéricos.",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End If
 
@@ -68,11 +78,11 @@ Public Class ImprimirIds
         Dim numeroDesde As Integer = Integer.Parse(System.Text.RegularExpressions.Regex.Match(jt_desde.Text, "\d+$").Value)
         Dim numeroHasta As Integer = Integer.Parse(System.Text.RegularExpressions.Regex.Match(jt_hasta.Text, "\d+$").Value)
 
-        ' Verificar que los prefijos sean iguales
-        If Not prefixDesde.Equals(prefixHasta, StringComparison.OrdinalIgnoreCase) Then
-            MessageBox.Show("Los prefijos deben ser iguales en ambos campos (por ejemplo, B100 y B200).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return False
-        End If
+        '' Verificar que los prefijos sean iguales
+        'If Not prefixDesde.Equals(prefixHasta, StringComparison.OrdinalIgnoreCase) Then
+        '    MessageBox.Show("Los prefijos deben ser iguales en ambos campos (por ejemplo, B100 y B200).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '    Return False
+        'End If
 
         ' Verificar que el valor numérico de jt_hasta sea mayor que el de jt_desde
         If numeroDesde > numeroHasta Then
