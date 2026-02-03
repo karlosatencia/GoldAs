@@ -242,12 +242,13 @@ Partial Class Registro
         lst_categoria_precio.DropDownStyle = ComboBoxStyle.DropDownList
         lst_categoria_precio.Font = New Font("Microsoft Sans Serif", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point)
         lst_categoria_precio.FormattingEnabled = True
-        lst_categoria_precio.Items.AddRange(New Object() {"Seleccione", "Precio contado", "Recargo +1", "Recargo +2", "Recargo +3", "Recargo +4"})
+        lst_categoria_precio.Items.AddRange(New Object() {"Precio contado"})
         lst_categoria_precio.Location = New Point(605, 380)
         lst_categoria_precio.Margin = New Padding(4, 3, 4, 3)
         lst_categoria_precio.Name = "lst_categoria_precio"
         lst_categoria_precio.Size = New Size(120, 28)
         lst_categoria_precio.TabIndex = 16
+        lst_categoria_precio.SelectedIndex = 0
         ' 
         ' lst_broche
         ' 

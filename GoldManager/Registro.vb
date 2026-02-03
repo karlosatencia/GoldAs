@@ -336,307 +336,374 @@ Public Class Registro
             jt_peso_total.Text = "Pendiente"
         End If
     End Sub
+
+    '--------------------------------------------------------------------------------------------------------
+    'Private Sub ActualizarNombreCompleto()
+    '    Dim nombreCompuesto As String = ""
+
+    '    If lst_marca.Text = "Italy" Then
+
+    '        If lst_tipo_producto.Text = "Piercing" Then
+    '            nombreCompuesto = lst_tipo_producto.Text & " It " & jt_descripcion.Text
+    '        Else
+
+    '            nombreCompuesto = lst_tipo_producto.Text & " It " & jt_descripcion.Text
+    '            ' Agregar información de los checkboxes de oro
+    '            Dim oroSeleccionado As String = ""
+
+    '            If ch_oro_amarillo.Checked Then
+    '                oroSeleccionado = "Oro amarillo"
+    '            End If
+    '            If ch_oro_blanco.Checked Then
+    '                If oroSeleccionado = "" Then
+    '                    oroSeleccionado = "Oro blanco"
+    '                Else
+    '                    oroSeleccionado = oroSeleccionado & " y Oro blanco"
+    '                End If
+    '            End If
+    '            If ch_oro_rosa.Checked Then
+    '                If oroSeleccionado = "" Then
+    '                    oroSeleccionado = "Oro rosa"
+    '                Else
+    '                    oroSeleccionado = oroSeleccionado & " y Oro rosa"
+    '                End If
+    '            End If
+
+    '            ' Evaluar todas las combinaciones posibles de selecciones
+    '            Select Case oroSeleccionado
+    '                Case "Oro amarillo"
+    '                    nombreCompuesto = nombreCompuesto & " " & oroSeleccionado & " 18k"
+    '                Case "Oro blanco"
+    '                    nombreCompuesto = nombreCompuesto & " " & oroSeleccionado & " 18k"
+    '                Case "Oro rosa"
+    '                    nombreCompuesto = nombreCompuesto & " " & oroSeleccionado & " 18k"
+    '                Case "Oro amarillo y Oro blanco"
+    '                    nombreCompuesto = nombreCompuesto & " " & oroSeleccionado & " 18k"
+    '                Case "Oro amarillo y Oro rosa"
+    '                    nombreCompuesto = nombreCompuesto & " " & oroSeleccionado & " 18k"
+    '                Case "Oro blanco y Oro rosa"
+    '                    nombreCompuesto = nombreCompuesto & " " & oroSeleccionado & " 18k"
+    '                Case "Oro amarillo y Oro blanco y Oro rosa"
+    '                    nombreCompuesto = nombreCompuesto & " Tres oros 18k"
+    '            End Select
+
+    '            If jt_talla.Text <> "" Then
+    '                ' Concatenar " / " y el valor de jt_talla.Text al final del nombreCompuesto
+    '                nombreCompuesto = nombreCompuesto & " / Talla " & jt_talla.Text & " /"
+    '            End If
+
+    '            If lst_categoria_precio.Text = "Recargo +1" And jt_grosor.Text <> "" And jt_largo.Text <> "" Then
+    '                nombreCompuesto = nombreCompuesto & " +1 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
+    '            ElseIf lst_categoria_precio.Text = "Recargo +1" And jt_grosor.Text = "" And jt_largo.Text <> "" Then
+    '                nombreCompuesto = nombreCompuesto & " +1 / " & jt_peso.Text & " Gr / " & jt_largo.Text & " Cm"
+    '            ElseIf lst_categoria_precio.Text = "Recargo +1" And jt_grosor.Text <> "" And jt_largo.Text = "" Then
+    '                nombreCompuesto = nombreCompuesto & " +1 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm"
+    '            ElseIf lst_categoria_precio.Text = "Recargo +1" And jt_grosor.Text = "" And jt_largo.Text = "" Then
+    '                nombreCompuesto = nombreCompuesto & " +1 / " & jt_peso.Text & " Gr"
+    '            ElseIf lst_categoria_precio.Text = "Recargo +2" And jt_grosor.Text <> "" And jt_largo.Text <> "" Then
+    '                nombreCompuesto = nombreCompuesto & " +2 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
+    '            ElseIf lst_categoria_precio.Text = "Recargo +2" And jt_grosor.Text = "" And jt_largo.Text <> "" Then
+    '                nombreCompuesto = nombreCompuesto & " +2 / " & jt_peso.Text & " Gr / " & jt_largo.Text & " Cm"
+    '            ElseIf lst_categoria_precio.Text = "Recargo +2" And jt_grosor.Text <> "" And jt_largo.Text = "" Then
+    '                nombreCompuesto = nombreCompuesto & " +2 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm"
+    '            ElseIf lst_categoria_precio.Text = "Recargo +2" And jt_grosor.Text = "" And jt_largo.Text = "" Then
+    '                nombreCompuesto = nombreCompuesto & " +2 / " & jt_peso.Text & " Gr"
+    '            ElseIf lst_categoria_precio.Text = "Recargo +3" And jt_grosor.Text <> "" And jt_largo.Text <> "" Then
+    '                nombreCompuesto = nombreCompuesto & " +3 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
+    '            ElseIf lst_categoria_precio.Text = "Recargo +3" And jt_grosor.Text <> "" And jt_largo.Text = "" Then
+    '                nombreCompuesto = nombreCompuesto & " +3 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm"
+    '            ElseIf lst_categoria_precio.Text = "Recargo +3" And jt_grosor.Text = "" And jt_largo.Text <> "" Then
+    '                nombreCompuesto = nombreCompuesto & " +3 / " & jt_peso.Text & " Gr / " & jt_largo.Text & " Cm"
+    '            ElseIf lst_categoria_precio.Text = "Recargo +3" And jt_grosor.Text = "" And jt_largo.Text = "" Then
+    '                nombreCompuesto = nombreCompuesto & " +3 / " & jt_peso.Text & " Gr "
+    '            ElseIf lst_categoria_precio.Text = "Recargo +4" And jt_grosor.Text <> "" And jt_largo.Text <> "" Then
+    '                nombreCompuesto = nombreCompuesto & " +4 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
+    '            ElseIf lst_categoria_precio.Text = "Recargo +4" And jt_grosor.Text <> "" And jt_largo.Text = "" Then
+    '                nombreCompuesto = nombreCompuesto & " +4 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm"
+    '            ElseIf lst_categoria_precio.Text = "Recargo +4" And jt_grosor.Text = "" And jt_largo.Text <> "" Then
+    '                nombreCompuesto = nombreCompuesto & " +4 / " & jt_peso.Text & " Gr / " & jt_largo.Text & " Cm"
+    '            ElseIf lst_categoria_precio.Text = "Recargo +4" And jt_grosor.Text = "" And jt_largo.Text = "" Then
+    '                nombreCompuesto = nombreCompuesto & " +4 / " & jt_peso.Text & " Gr"
+    '            ElseIf jt_grosor.Text <> "" And jt_largo.Text <> "" Then
+    '                nombreCompuesto = nombreCompuesto & " " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
+    '            ElseIf jt_grosor.Text <> "" And jt_largo.Text = "" Then
+    '                nombreCompuesto = nombreCompuesto & " " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm"
+    '            ElseIf jt_grosor.Text = "" And jt_largo.Text <> "" Then
+    '                nombreCompuesto = nombreCompuesto & " " & jt_peso.Text & " Gr / " & jt_largo.Text & " Cm"
+    '            Else
+    '                nombreCompuesto = nombreCompuesto & " " & jt_peso.Text & " Gr"
+    '            End If
+    '        End If
+    '    Else
+
+    '        If lst_tipo_producto.Text = "Piercing" Then
+    '            nombreCompuesto = lst_tipo_producto.Text & " " & jt_descripcion.Text
+    '        Else
+
+    '            nombreCompuesto = lst_tipo_producto.Text & " " & jt_descripcion.Text
+    '            ' Agregar información de los checkboxes de oro
+    '            Dim oroSeleccionado As String = ""
+
+    '            If ch_oro_amarillo.Checked Then
+    '                oroSeleccionado = "Oro amarillo"
+    '            End If
+    '            If ch_oro_blanco.Checked Then
+    '                If oroSeleccionado = "" Then
+    '                    oroSeleccionado = "Oro blanco"
+    '                Else
+    '                    oroSeleccionado = oroSeleccionado & " y Oro blanco"
+    '                End If
+    '            End If
+    '            If ch_oro_rosa.Checked Then
+    '                If oroSeleccionado = "" Then
+    '                    oroSeleccionado = "Oro rosa"
+    '                Else
+    '                    oroSeleccionado = oroSeleccionado & " y Oro rosa"
+    '                End If
+    '            End If
+
+    '            ' Evaluar todas las combinaciones posibles de selecciones
+    '            Select Case oroSeleccionado
+    '                Case "Oro amarillo"
+    '                    nombreCompuesto = nombreCompuesto & " " & oroSeleccionado & " 18k"
+    '                Case "Oro blanco"
+    '                    nombreCompuesto = nombreCompuesto & " " & oroSeleccionado & " 18k"
+    '                Case "Oro rosa"
+    '                    nombreCompuesto = nombreCompuesto & " " & oroSeleccionado & " 18k"
+    '                Case "Oro amarillo y Oro blanco"
+    '                    nombreCompuesto = nombreCompuesto & " " & oroSeleccionado & " 18k"
+    '                Case "Oro amarillo y Oro rosa"
+    '                    nombreCompuesto = nombreCompuesto & " " & oroSeleccionado & " 18k"
+    '                Case "Oro blanco y Oro rosa"
+    '                    nombreCompuesto = nombreCompuesto & " " & oroSeleccionado & " 18k"
+    '                Case "Oro amarillo y Oro blanco y Oro rosa"
+    '                    nombreCompuesto = nombreCompuesto & " Tres oros 18k"
+    '            End Select
+
+    '            If jt_talla.Text <> "" Then
+    '                ' Concatenar " / " y el valor de jt_talla.Text al final del nombreCompuesto
+    '                nombreCompuesto = nombreCompuesto & " / Talla " & jt_talla.Text & " /"
+    '            End If
+
+    '            If lst_categoria_precio.Text = "Recargo +1" And jt_grosor.Text <> "" And jt_largo.Text <> "" Then
+    '                If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
+    '                    Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
+    '                    nombreCompuesto = nombreCompuesto & " +1 / " & valorGramo.ToString("0.00") & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
+    '                Else
+    '                    nombreCompuesto = nombreCompuesto & " +1 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
+    '                End If
+    '            ElseIf lst_categoria_precio.Text = "Recargo +1" And jt_grosor.Text <> "" And jt_largo.Text = "" Then
+    '                If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
+    '                    Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
+    '                    nombreCompuesto = nombreCompuesto & " +1 / " & valorGramo.ToString("0.00") & " Gr / " & jt_grosor.Text & " mm"
+    '                Else
+    '                    nombreCompuesto = nombreCompuesto & " +1 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm"
+    '                End If
+    '            ElseIf lst_categoria_precio.Text = "Recargo +1" And jt_grosor.Text = "" And jt_largo.Text <> "" Then
+    '                If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
+    '                    Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
+    '                    nombreCompuesto = nombreCompuesto & " +1 / " & valorGramo.ToString("0.00") & " Gr / " & jt_largo.Text & " cm"
+    '                Else
+    '                    nombreCompuesto = nombreCompuesto & " +1 / " & jt_peso.Text & " Gr / " & jt_largo.Text & " cm"
+    '                End If
+    '            ElseIf lst_categoria_precio.Text = "Recargo +1" And jt_grosor.Text = "" And jt_largo.Text = "" Then
+    '                If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
+    '                    Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
+    '                    nombreCompuesto = nombreCompuesto & " +1 / " & valorGramo.ToString("0.00") & " Gr"
+    '                Else
+    '                    nombreCompuesto = nombreCompuesto & " +1 / " & jt_peso.Text & " Gr"
+    '                End If
+    '            ElseIf lst_categoria_precio.Text = "Recargo +2" And jt_grosor.Text <> "" And jt_largo.Text <> "" Then
+    '                If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
+    '                    Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
+    '                    nombreCompuesto = nombreCompuesto & " +2 / " & valorGramo.ToString("0.00") & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
+    '                Else
+    '                    nombreCompuesto = nombreCompuesto & " +2 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
+    '                End If
+    '            ElseIf lst_categoria_precio.Text = "Recargo +2" And jt_grosor.Text <> "" And jt_largo.Text = "" Then
+    '                If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
+    '                    Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
+    '                    nombreCompuesto = nombreCompuesto & " +2 / " & valorGramo.ToString("0.00") & "Gr / " & jt_grosor.Text & " mm"
+    '                Else
+    '                    nombreCompuesto = nombreCompuesto & " +2 / " & jt_peso.Text & "Gr / " & jt_grosor.Text & " mm"
+    '                End If
+    '            ElseIf lst_categoria_precio.Text = "Recargo +2" And jt_grosor.Text = "" And jt_largo.Text <> "" Then
+    '                If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
+    '                    Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
+    '                    nombreCompuesto = nombreCompuesto & " +2 / " & valorGramo.ToString("0.00") & " Gr / " & jt_largo.Text & " cm"
+    '                Else
+    '                    nombreCompuesto = nombreCompuesto & " +2 / " & jt_peso.Text & " Gr / " & jt_largo.Text & " cm"
+    '                End If
+    '            ElseIf lst_categoria_precio.Text = "Recargo +2" And jt_grosor.Text = "" And jt_largo.Text = "" Then
+    '                If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
+    '                    Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
+    '                    nombreCompuesto = nombreCompuesto & " +2 / " & valorGramo.ToString("0.00") & " Gr "
+    '                Else
+    '                    nombreCompuesto = nombreCompuesto & " +2 / " & jt_peso.Text & " Gr"
+    '                End If
+    '            ElseIf lst_categoria_precio.Text = "Recargo +3" And jt_grosor.Text <> "" And jt_largo.Text <> "" Then
+    '                If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
+    '                    Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
+    '                    nombreCompuesto = nombreCompuesto & " +3 / " & valorGramo.ToString("0.00") & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
+    '                Else
+    '                    nombreCompuesto = nombreCompuesto & " +3 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
+    '                End If
+    '            ElseIf lst_categoria_precio.Text = "Recargo +3" And jt_grosor.Text <> "" And jt_largo.Text = "" Then
+    '                If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
+    '                    Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
+    '                    nombreCompuesto = nombreCompuesto & " +3 / " & valorGramo.ToString("0.00") & " Gr / " & jt_grosor.Text & " mm "
+    '                Else
+    '                    nombreCompuesto = nombreCompuesto & " +3 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm "
+    '                End If
+    '            ElseIf lst_categoria_precio.Text = "Recargo +3" And jt_grosor.Text = "" And jt_largo.Text <> "" Then
+    '                If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
+    '                    Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
+    '                    nombreCompuesto = nombreCompuesto & " +3 / " & valorGramo.ToString("0.00") & " Gr / " & jt_largo.Text & " cm"
+    '                Else
+    '                    nombreCompuesto = nombreCompuesto & " +3 / " & jt_peso.Text & " Gr / " & jt_largo.Text & " cm "
+    '                End If
+    '            ElseIf lst_categoria_precio.Text = "Recargo +3" And jt_grosor.Text = "" And jt_largo.Text = "" Then
+    '                If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
+    '                    Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
+    '                    nombreCompuesto = nombreCompuesto & " +3 / " & valorGramo.ToString("0.00") & " Gr"
+    '                Else
+    '                    nombreCompuesto = nombreCompuesto & " +3 / " & jt_peso.Text & " Gr"
+    '                End If
+    '            ElseIf lst_categoria_precio.Text = "Recargo +4" And jt_grosor.Text <> "" And jt_largo.Text <> "" Then
+    '                If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
+    '                    Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
+    '                    nombreCompuesto = nombreCompuesto & " +4 / " & valorGramo.ToString("0.00") & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
+    '                Else
+    '                    nombreCompuesto = nombreCompuesto & " +4 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
+    '                End If
+    '            ElseIf lst_categoria_precio.Text = "Recargo +4" And jt_grosor.Text <> "" And jt_largo.Text = "" Then
+    '                If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
+    '                    Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
+    '                    nombreCompuesto = nombreCompuesto & " +4 / " & valorGramo.ToString("0.00") & " Gr / " & jt_grosor.Text & " mm"
+    '                Else
+    '                    nombreCompuesto = nombreCompuesto & " +4 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm"
+    '                End If
+    '            ElseIf lst_categoria_precio.Text = "Recargo +4" And jt_grosor.Text = "" And jt_largo.Text <> "" Then
+    '                If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
+    '                    Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
+    '                    nombreCompuesto = nombreCompuesto & " +4 / " & valorGramo.ToString("0.00") & " Gr / " & jt_largo.Text & " cm "
+    '                Else
+    '                    nombreCompuesto = nombreCompuesto & " +4 / " & jt_peso.Text & " Gr / " & jt_largo.Text & " cm "
+    '                End If
+    '            ElseIf lst_categoria_precio.Text = "Recargo +4" And jt_grosor.Text = "" And jt_largo.Text = "" Then
+    '                If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
+    '                    Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
+    '                    nombreCompuesto = nombreCompuesto & " +4 / " & valorGramo.ToString("0.00") & " Gr "
+    '                Else
+    '                    nombreCompuesto = nombreCompuesto & " +4 / " & jt_peso.Text & " Gr "
+    '                End If
+    '            ElseIf jt_grosor.Text <> "" And jt_largo.Text <> "" Then
+    '                If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
+    '                    Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
+    '                    nombreCompuesto = nombreCompuesto & " " & valorGramo.ToString("0.00") & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
+    '                Else
+    '                    nombreCompuesto = nombreCompuesto & " " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
+    '                End If
+    '            ElseIf jt_grosor.Text <> "" And jt_largo.Text = "" Then
+    '                If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
+    '                    Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
+    '                    nombreCompuesto = nombreCompuesto & " " & valorGramo.ToString("0.00") & " Gr / " & jt_grosor.Text & " mm "
+    '                Else
+    '                    nombreCompuesto = nombreCompuesto & " " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm "
+    '                End If
+    '            ElseIf jt_grosor.Text = "" And jt_largo.Text <> "" Then
+    '                If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
+    '                    Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
+    '                    nombreCompuesto = nombreCompuesto & " " & valorGramo.ToString("0.00") & " Gr / " & jt_largo.Text & " Cm "
+    '                Else
+    '                    nombreCompuesto = nombreCompuesto & " " & jt_peso.Text & " Gr / " & jt_largo.Text & " Cm "
+    '                End If
+    '            ElseIf jt_grosor.Text = "" And jt_largo.Text = "" Then
+    '                If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
+    '                    Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
+    '                    nombreCompuesto = nombreCompuesto & " " & valorGramo.ToString("0.00") & " Gr"
+    '                Else
+    '                    nombreCompuesto = nombreCompuesto & " " & jt_peso.Text & " Gr"
+    '                End If
+    '            End If
+    '        End If
+    '    End If
+    '    'If lst_sucursall.Text = "Medellín" Then
+    '    'nombreCompuesto = nombreCompuesto + " *"
+    '    'jt_nombre_compuesto.Text = nombreCompuesto
+    '    'Else
+    '    'jt_nombre_compuesto.Text = nombreCompuesto
+    '    'End If
+    '    If lst_broche.Text <> "Seleccione" Then
+    '        nombreCompuesto = nombreCompuesto & " Broche " & lst_broche.Text
+    '    End If
+    '    jt_nombre_compuesto.Text = nombreCompuesto
+    'End Sub
+    '-----------------------------------------------------------------------------------------------------------------------
+
     Private Sub ActualizarNombreCompleto()
-        Dim nombreCompuesto As String = ""
 
+        Dim partes As New List(Of String)
+
+        ' 1️⃣ Tipo de producto + descripción
+        Dim baseNombre As String = lst_tipo_producto.Text & " " & jt_descripcion.Text
+        partes.Add(baseNombre.Trim())
+
+        ' 2️⃣ Peso (Gr) + broche
+        If IsNumeric(jt_peso.Text) Then
+            Dim pesoBase As Double = CDbl(jt_peso.Text)
+            Dim pesoBroche As Double = 0
+            Dim pesoTotal As Double = pesoBase
+
+            If IsNumeric(lst_broche.Text) AndAlso lst_broche.Text <> "Seleccione" Then
+                pesoBroche = CDbl(lst_broche.Text)
+                pesoTotal += pesoBroche
+            End If
+
+            If pesoBroche > 0 Then
+                partes.Add(pesoTotal.ToString("0.00") & " Gr Broche " & pesoBroche.ToString("0.00"))
+            Else
+                partes.Add(pesoTotal.ToString("0.00") & " Gr")
+            End If
+        End If
+
+        ' 3️⃣ Largo (Cm)
+        If jt_largo.Text <> "" Then
+            partes.Add(jt_largo.Text & " Cm")
+        End If
+
+        ' 4️⃣ Grosor (Mm)
+        If jt_grosor.Text <> "" Then
+            partes.Add(jt_grosor.Text & " mm")
+        End If
+
+        ' 5️⃣ Oro
+        Dim tiposOro As New List(Of String)
+
+        If ch_oro_amarillo.Checked Then tiposOro.Add("Oro amarillo")
+        If ch_oro_blanco.Checked Then tiposOro.Add("Oro blanco")
+        If ch_oro_rosa.Checked Then tiposOro.Add("Oro rosa")
+
+        If tiposOro.Count > 0 Then
+            If tiposOro.Count = 3 Then
+                partes.Add("Tres oros 18k")
+            Else
+                partes.Add(String.Join(" y ", tiposOro) & " 18k")
+            End If
+        End If
+
+        ' 6️⃣ Marca
         If lst_marca.Text = "Italy" Then
-
-            If lst_tipo_producto.Text = "Piercing" Then
-                nombreCompuesto = lst_tipo_producto.Text & " It " & jt_descripcion.Text
-            Else
-
-                nombreCompuesto = lst_tipo_producto.Text & " It " & jt_descripcion.Text
-                ' Agregar información de los checkboxes de oro
-                Dim oroSeleccionado As String = ""
-
-                If ch_oro_amarillo.Checked Then
-                    oroSeleccionado = "Oro amarillo"
-                End If
-                If ch_oro_blanco.Checked Then
-                    If oroSeleccionado = "" Then
-                        oroSeleccionado = "Oro blanco"
-                    Else
-                        oroSeleccionado = oroSeleccionado & " y Oro blanco"
-                    End If
-                End If
-                If ch_oro_rosa.Checked Then
-                    If oroSeleccionado = "" Then
-                        oroSeleccionado = "Oro rosa"
-                    Else
-                        oroSeleccionado = oroSeleccionado & " y Oro rosa"
-                    End If
-                End If
-
-                ' Evaluar todas las combinaciones posibles de selecciones
-                Select Case oroSeleccionado
-                    Case "Oro amarillo"
-                        nombreCompuesto = nombreCompuesto & " " & oroSeleccionado & " 18k"
-                    Case "Oro blanco"
-                        nombreCompuesto = nombreCompuesto & " " & oroSeleccionado & " 18k"
-                    Case "Oro rosa"
-                        nombreCompuesto = nombreCompuesto & " " & oroSeleccionado & " 18k"
-                    Case "Oro amarillo y Oro blanco"
-                        nombreCompuesto = nombreCompuesto & " " & oroSeleccionado & " 18k"
-                    Case "Oro amarillo y Oro rosa"
-                        nombreCompuesto = nombreCompuesto & " " & oroSeleccionado & " 18k"
-                    Case "Oro blanco y Oro rosa"
-                        nombreCompuesto = nombreCompuesto & " " & oroSeleccionado & " 18k"
-                    Case "Oro amarillo y Oro blanco y Oro rosa"
-                        nombreCompuesto = nombreCompuesto & " Tres oros 18k"
-                End Select
-
-                If jt_talla.Text <> "" Then
-                    ' Concatenar " / " y el valor de jt_talla.Text al final del nombreCompuesto
-                    nombreCompuesto = nombreCompuesto & " / Talla " & jt_talla.Text & " /"
-                End If
-
-                If lst_categoria_precio.Text = "Recargo +1" And jt_grosor.Text <> "" And jt_largo.Text <> "" Then
-                    nombreCompuesto = nombreCompuesto & " +1 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
-                ElseIf lst_categoria_precio.Text = "Recargo +1" And jt_grosor.Text = "" And jt_largo.Text <> "" Then
-                    nombreCompuesto = nombreCompuesto & " +1 / " & jt_peso.Text & " Gr / " & jt_largo.Text & " Cm"
-                ElseIf lst_categoria_precio.Text = "Recargo +1" And jt_grosor.Text <> "" And jt_largo.Text = "" Then
-                    nombreCompuesto = nombreCompuesto & " +1 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm"
-                ElseIf lst_categoria_precio.Text = "Recargo +1" And jt_grosor.Text = "" And jt_largo.Text = "" Then
-                    nombreCompuesto = nombreCompuesto & " +1 / " & jt_peso.Text & " Gr"
-                ElseIf lst_categoria_precio.Text = "Recargo +2" And jt_grosor.Text <> "" And jt_largo.Text <> "" Then
-                    nombreCompuesto = nombreCompuesto & " +2 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
-                ElseIf lst_categoria_precio.Text = "Recargo +2" And jt_grosor.Text = "" And jt_largo.Text <> "" Then
-                    nombreCompuesto = nombreCompuesto & " +2 / " & jt_peso.Text & " Gr / " & jt_largo.Text & " Cm"
-                ElseIf lst_categoria_precio.Text = "Recargo +2" And jt_grosor.Text <> "" And jt_largo.Text = "" Then
-                    nombreCompuesto = nombreCompuesto & " +2 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm"
-                ElseIf lst_categoria_precio.Text = "Recargo +2" And jt_grosor.Text = "" And jt_largo.Text = "" Then
-                    nombreCompuesto = nombreCompuesto & " +2 / " & jt_peso.Text & " Gr"
-                ElseIf lst_categoria_precio.Text = "Recargo +3" And jt_grosor.Text <> "" And jt_largo.Text <> "" Then
-                    nombreCompuesto = nombreCompuesto & " +3 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
-                ElseIf lst_categoria_precio.Text = "Recargo +3" And jt_grosor.Text <> "" And jt_largo.Text = "" Then
-                    nombreCompuesto = nombreCompuesto & " +3 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm"
-                ElseIf lst_categoria_precio.Text = "Recargo +3" And jt_grosor.Text = "" And jt_largo.Text <> "" Then
-                    nombreCompuesto = nombreCompuesto & " +3 / " & jt_peso.Text & " Gr / " & jt_largo.Text & " Cm"
-                ElseIf lst_categoria_precio.Text = "Recargo +3" And jt_grosor.Text = "" And jt_largo.Text = "" Then
-                    nombreCompuesto = nombreCompuesto & " +3 / " & jt_peso.Text & " Gr "
-                ElseIf lst_categoria_precio.Text = "Recargo +4" And jt_grosor.Text <> "" And jt_largo.Text <> "" Then
-                    nombreCompuesto = nombreCompuesto & " +4 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
-                ElseIf lst_categoria_precio.Text = "Recargo +4" And jt_grosor.Text <> "" And jt_largo.Text = "" Then
-                    nombreCompuesto = nombreCompuesto & " +4 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm"
-                ElseIf lst_categoria_precio.Text = "Recargo +4" And jt_grosor.Text = "" And jt_largo.Text <> "" Then
-                    nombreCompuesto = nombreCompuesto & " +4 / " & jt_peso.Text & " Gr / " & jt_largo.Text & " Cm"
-                ElseIf lst_categoria_precio.Text = "Recargo +4" And jt_grosor.Text = "" And jt_largo.Text = "" Then
-                    nombreCompuesto = nombreCompuesto & " +4 / " & jt_peso.Text & " Gr"
-                ElseIf jt_grosor.Text <> "" And jt_largo.Text <> "" Then
-                    nombreCompuesto = nombreCompuesto & " " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
-                ElseIf jt_grosor.Text <> "" And jt_largo.Text = "" Then
-                    nombreCompuesto = nombreCompuesto & " " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm"
-                ElseIf jt_grosor.Text = "" And jt_largo.Text <> "" Then
-                    nombreCompuesto = nombreCompuesto & " " & jt_peso.Text & " Gr / " & jt_largo.Text & " Cm"
-                Else
-                    nombreCompuesto = nombreCompuesto & " " & jt_peso.Text & " Gr"
-                End If
-            End If
-        Else
-
-            If lst_tipo_producto.Text = "Piercing" Then
-                nombreCompuesto = lst_tipo_producto.Text & " " & jt_descripcion.Text
-            Else
-
-                nombreCompuesto = lst_tipo_producto.Text & " " & jt_descripcion.Text
-                ' Agregar información de los checkboxes de oro
-                Dim oroSeleccionado As String = ""
-
-                If ch_oro_amarillo.Checked Then
-                    oroSeleccionado = "Oro amarillo"
-                End If
-                If ch_oro_blanco.Checked Then
-                    If oroSeleccionado = "" Then
-                        oroSeleccionado = "Oro blanco"
-                    Else
-                        oroSeleccionado = oroSeleccionado & " y Oro blanco"
-                    End If
-                End If
-                If ch_oro_rosa.Checked Then
-                    If oroSeleccionado = "" Then
-                        oroSeleccionado = "Oro rosa"
-                    Else
-                        oroSeleccionado = oroSeleccionado & " y Oro rosa"
-                    End If
-                End If
-
-                ' Evaluar todas las combinaciones posibles de selecciones
-                Select Case oroSeleccionado
-                    Case "Oro amarillo"
-                        nombreCompuesto = nombreCompuesto & " " & oroSeleccionado & " 18k"
-                    Case "Oro blanco"
-                        nombreCompuesto = nombreCompuesto & " " & oroSeleccionado & " 18k"
-                    Case "Oro rosa"
-                        nombreCompuesto = nombreCompuesto & " " & oroSeleccionado & " 18k"
-                    Case "Oro amarillo y Oro blanco"
-                        nombreCompuesto = nombreCompuesto & " " & oroSeleccionado & " 18k"
-                    Case "Oro amarillo y Oro rosa"
-                        nombreCompuesto = nombreCompuesto & " " & oroSeleccionado & " 18k"
-                    Case "Oro blanco y Oro rosa"
-                        nombreCompuesto = nombreCompuesto & " " & oroSeleccionado & " 18k"
-                    Case "Oro amarillo y Oro blanco y Oro rosa"
-                        nombreCompuesto = nombreCompuesto & " Tres oros 18k"
-                End Select
-
-                If jt_talla.Text <> "" Then
-                    ' Concatenar " / " y el valor de jt_talla.Text al final del nombreCompuesto
-                    nombreCompuesto = nombreCompuesto & " / Talla " & jt_talla.Text & " /"
-                End If
-
-                If lst_categoria_precio.Text = "Recargo +1" And jt_grosor.Text <> "" And jt_largo.Text <> "" Then
-                    If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
-                        Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
-                        nombreCompuesto = nombreCompuesto & " +1 / " & valorGramo.ToString("0.00") & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
-                    Else
-                        nombreCompuesto = nombreCompuesto & " +1 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
-                    End If
-                ElseIf lst_categoria_precio.Text = "Recargo +1" And jt_grosor.Text <> "" And jt_largo.Text = "" Then
-                    If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
-                        Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
-                        nombreCompuesto = nombreCompuesto & " +1 / " & valorGramo.ToString("0.00") & " Gr / " & jt_grosor.Text & " mm"
-                    Else
-                        nombreCompuesto = nombreCompuesto & " +1 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm"
-                    End If
-                ElseIf lst_categoria_precio.Text = "Recargo +1" And jt_grosor.Text = "" And jt_largo.Text <> "" Then
-                    If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
-                        Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
-                        nombreCompuesto = nombreCompuesto & " +1 / " & valorGramo.ToString("0.00") & " Gr / " & jt_largo.Text & " cm"
-                    Else
-                        nombreCompuesto = nombreCompuesto & " +1 / " & jt_peso.Text & " Gr / " & jt_largo.Text & " cm"
-                    End If
-                ElseIf lst_categoria_precio.Text = "Recargo +1" And jt_grosor.Text = "" And jt_largo.Text = "" Then
-                    If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
-                        Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
-                        nombreCompuesto = nombreCompuesto & " +1 / " & valorGramo.ToString("0.00") & " Gr"
-                    Else
-                        nombreCompuesto = nombreCompuesto & " +1 / " & jt_peso.Text & " Gr"
-                    End If
-                ElseIf lst_categoria_precio.Text = "Recargo +2" And jt_grosor.Text <> "" And jt_largo.Text <> "" Then
-                    If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
-                        Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
-                        nombreCompuesto = nombreCompuesto & " +2 / " & valorGramo.ToString("0.00") & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
-                    Else
-                        nombreCompuesto = nombreCompuesto & " +2 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
-                    End If
-                ElseIf lst_categoria_precio.Text = "Recargo +2" And jt_grosor.Text <> "" And jt_largo.Text = "" Then
-                    If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
-                        Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
-                        nombreCompuesto = nombreCompuesto & " +2 / " & valorGramo.ToString("0.00") & "Gr / " & jt_grosor.Text & " mm"
-                    Else
-                        nombreCompuesto = nombreCompuesto & " +2 / " & jt_peso.Text & "Gr / " & jt_grosor.Text & " mm"
-                    End If
-                ElseIf lst_categoria_precio.Text = "Recargo +2" And jt_grosor.Text = "" And jt_largo.Text <> "" Then
-                    If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
-                        Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
-                        nombreCompuesto = nombreCompuesto & " +2 / " & valorGramo.ToString("0.00") & " Gr / " & jt_largo.Text & " cm"
-                    Else
-                        nombreCompuesto = nombreCompuesto & " +2 / " & jt_peso.Text & " Gr / " & jt_largo.Text & " cm"
-                    End If
-                ElseIf lst_categoria_precio.Text = "Recargo +2" And jt_grosor.Text = "" And jt_largo.Text = "" Then
-                    If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
-                        Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
-                        nombreCompuesto = nombreCompuesto & " +2 / " & valorGramo.ToString("0.00") & " Gr "
-                    Else
-                        nombreCompuesto = nombreCompuesto & " +2 / " & jt_peso.Text & " Gr"
-                    End If
-                ElseIf lst_categoria_precio.Text = "Recargo +3" And jt_grosor.Text <> "" And jt_largo.Text <> "" Then
-                    If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
-                        Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
-                        nombreCompuesto = nombreCompuesto & " +3 / " & valorGramo.ToString("0.00") & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
-                    Else
-                        nombreCompuesto = nombreCompuesto & " +3 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
-                    End If
-                ElseIf lst_categoria_precio.Text = "Recargo +3" And jt_grosor.Text <> "" And jt_largo.Text = "" Then
-                    If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
-                        Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
-                        nombreCompuesto = nombreCompuesto & " +3 / " & valorGramo.ToString("0.00") & " Gr / " & jt_grosor.Text & " mm "
-                    Else
-                        nombreCompuesto = nombreCompuesto & " +3 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm "
-                    End If
-                ElseIf lst_categoria_precio.Text = "Recargo +3" And jt_grosor.Text = "" And jt_largo.Text <> "" Then
-                    If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
-                        Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
-                        nombreCompuesto = nombreCompuesto & " +3 / " & valorGramo.ToString("0.00") & " Gr / " & jt_largo.Text & " cm"
-                    Else
-                        nombreCompuesto = nombreCompuesto & " +3 / " & jt_peso.Text & " Gr / " & jt_largo.Text & " cm "
-                    End If
-                ElseIf lst_categoria_precio.Text = "Recargo +3" And jt_grosor.Text = "" And jt_largo.Text = "" Then
-                    If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
-                        Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
-                        nombreCompuesto = nombreCompuesto & " +3 / " & valorGramo.ToString("0.00") & " Gr"
-                    Else
-                        nombreCompuesto = nombreCompuesto & " +3 / " & jt_peso.Text & " Gr"
-                    End If
-                ElseIf lst_categoria_precio.Text = "Recargo +4" And jt_grosor.Text <> "" And jt_largo.Text <> "" Then
-                    If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
-                        Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
-                        nombreCompuesto = nombreCompuesto & " +4 / " & valorGramo.ToString("0.00") & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
-                    Else
-                        nombreCompuesto = nombreCompuesto & " +4 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
-                    End If
-                ElseIf lst_categoria_precio.Text = "Recargo +4" And jt_grosor.Text <> "" And jt_largo.Text = "" Then
-                    If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
-                        Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
-                        nombreCompuesto = nombreCompuesto & " +4 / " & valorGramo.ToString("0.00") & " Gr / " & jt_grosor.Text & " mm"
-                    Else
-                        nombreCompuesto = nombreCompuesto & " +4 / " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm"
-                    End If
-                ElseIf lst_categoria_precio.Text = "Recargo +4" And jt_grosor.Text = "" And jt_largo.Text <> "" Then
-                    If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
-                        Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
-                        nombreCompuesto = nombreCompuesto & " +4 / " & valorGramo.ToString("0.00") & " Gr / " & jt_largo.Text & " cm "
-                    Else
-                        nombreCompuesto = nombreCompuesto & " +4 / " & jt_peso.Text & " Gr / " & jt_largo.Text & " cm "
-                    End If
-                ElseIf lst_categoria_precio.Text = "Recargo +4" And jt_grosor.Text = "" And jt_largo.Text = "" Then
-                    If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
-                        Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
-                        nombreCompuesto = nombreCompuesto & " +4 / " & valorGramo.ToString("0.00") & " Gr "
-                    Else
-                        nombreCompuesto = nombreCompuesto & " +4 / " & jt_peso.Text & " Gr "
-                    End If
-                ElseIf jt_grosor.Text <> "" And jt_largo.Text <> "" Then
-                    If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
-                        Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
-                        nombreCompuesto = nombreCompuesto & " " & valorGramo.ToString("0.00") & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
-                    Else
-                        nombreCompuesto = nombreCompuesto & " " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm / " & jt_largo.Text & " Cm"
-                    End If
-                ElseIf jt_grosor.Text <> "" And jt_largo.Text = "" Then
-                    If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
-                        Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
-                        nombreCompuesto = nombreCompuesto & " " & valorGramo.ToString("0.00") & " Gr / " & jt_grosor.Text & " mm "
-                    Else
-                        nombreCompuesto = nombreCompuesto & " " & jt_peso.Text & " Gr / " & jt_grosor.Text & " mm "
-                    End If
-                ElseIf jt_grosor.Text = "" And jt_largo.Text <> "" Then
-                    If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
-                        Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
-                        nombreCompuesto = nombreCompuesto & " " & valorGramo.ToString("0.00") & " Gr / " & jt_largo.Text & " Cm "
-                    Else
-                        nombreCompuesto = nombreCompuesto & " " & jt_peso.Text & " Gr / " & jt_largo.Text & " Cm "
-                    End If
-                ElseIf jt_grosor.Text = "" And jt_largo.Text = "" Then
-                    If IsNumeric(jt_peso.Text) And IsNumeric(lst_broche.Text) And jt_peso.Text <> "" And lst_broche.Text <> "Seleccione" Then
-                        Dim valorGramo As Double = CDbl(jt_peso.Text) + CDbl(lst_broche.Text)
-                        nombreCompuesto = nombreCompuesto & " " & valorGramo.ToString("0.00") & " Gr"
-                    Else
-                        nombreCompuesto = nombreCompuesto & " " & jt_peso.Text & " Gr"
-                    End If
-                End If
-            End If
+            partes.Add("It")
         End If
-        'If lst_sucursall.Text = "Medellín" Then
-        'nombreCompuesto = nombreCompuesto + " *"
-        'jt_nombre_compuesto.Text = nombreCompuesto
-        'Else
-        'jt_nombre_compuesto.Text = nombreCompuesto
-        'End If
-        If lst_broche.Text <> "Seleccione" Then
-            nombreCompuesto = nombreCompuesto & " Broche " & lst_broche.Text
-        End If
-        jt_nombre_compuesto.Text = nombreCompuesto
+
+        ' 🔚 Nombre final
+        jt_nombre_compuesto.Text = String.Join(" / ", partes)
+
     End Sub
+
+
+
     Private Sub validarCampos()
         If lst_compra.Text = "" Then
             MessageBox.Show("Seleccione una compra", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -853,52 +920,56 @@ Public Class Registro
                 conexion.Open()
             End If
 
-            'Using cmdRef As New MySql.Data.MySqlClient.MySqlCommand("SELECT MAX(CAST(SUBSTRING(referencia, 2) AS SIGNED)) 
-            'FROM productos
-            'WHERE sucursal = @idsucursal
-            'AND referencia NOT LIKE 'B%';
-            '", conexion)
-            '    cmdRef.Parameters.AddWithValue("@idsucursal", id_sucursal)
-            '    Dim resultado As Object = cmdRef.ExecuteScalar()
-            '    If resultado IsNot DBNull.Value Then
-            '        ultima_referencia = Convert.ToInt32(resultado)
-            '    Else
-            '        ultima_referencia = 0
-            '    End If
-            'End Using
-
-            '' Incrementar el número de referencia
-            'ultima_referencia += 1
-
-            Using cmdRef As New MySql.Data.MySqlClient.MySqlCommand(
-                "SELECT MAX(CAST(referencia AS SIGNED))
-                FROM productos
-                WHERE sucursal = @idsucursal;", conexion)
-
+            Using cmdRef As New MySql.Data.MySqlClient.MySqlCommand("SELECT MAX(CAST(SUBSTRING(referencia, 2) AS SIGNED)) 
+            FROM productos
+            WHERE sucursal = @idsucursal
+            AND referencia NOT LIKE 'B%';
+            ", conexion)
                 cmdRef.Parameters.AddWithValue("@idsucursal", id_sucursal)
-
                 Dim resultado As Object = cmdRef.ExecuteScalar()
-
-                If resultado IsNot DBNull.Value AndAlso resultado IsNot Nothing Then
+                If resultado IsNot DBNull.Value Then
                     ultima_referencia = Convert.ToInt32(resultado)
+                Else
+                    ultima_referencia = 0
                 End If
             End Using
 
-            ' Incrementar referencia
-            Dim nueva_referencia As Integer
-            If id_sucursal = 1 Then
-                nueva_referencia = ultima_referencia + 1
-            End If
+            ' Incrementar el número de referencia
+            ultima_referencia += 1
+
+
+            '--------------------------------------------------------------------------------------
+            'Using cmdRef As New MySql.Data.MySqlClient.MySqlCommand(
+            '    "SELECT MAX(CAST(referencia AS SIGNED))
+            '    FROM productos
+            '    WHERE sucursal = @idsucursal;", conexion)
+
+            '    cmdRef.Parameters.AddWithValue("@idsucursal", id_sucursal)
+
+            '    Dim resultado As Object = cmdRef.ExecuteScalar()
+
+            '    If resultado IsNot DBNull.Value AndAlso resultado IsNot Nothing Then
+            '        ultima_referencia = Convert.ToInt32(resultado)
+            '    End If
+            'End Using
+
+            '' Incrementar referencia
+            'Dim nueva_referencia As Integer
+            'If id_sucursal = 1 Then
+            '    nueva_referencia = ultima_referencia + 1
+            'End If
+            '----------------------------------------------------------------------------------------
+
 
             ' Construir la nueva referencia según la lógica establecida
-            'Dim nueva_referencia As String
-            'If id_sucursal = 1 Then
-            '    nueva_referencia = "E" & ultima_referencia
-            'ElseIf id_sucursal = 2 Then
-            '    nueva_referencia = "D" & ultima_referencia
-            'Else
-            '    nueva_referencia = "Otro" & ultima_referencia
-            'End If
+            Dim nueva_referencia As String
+            If id_sucursal = 1 Then
+                nueva_referencia = "I" & ultima_referencia
+            ElseIf id_sucursal = 2 Then
+                nueva_referencia = "P" & ultima_referencia
+            Else
+                nueva_referencia = "Otro" & ultima_referencia
+            End If
 
             ' Inserción de datos en la tabla productos
             If Not ch_adicional.Checked Then
@@ -1072,50 +1143,56 @@ Public Class Registro
                 conexion.Open()
             End If
 
-            'Using cmdRef As New MySql.Data.MySqlClient.MySqlCommand("SELECT MAX(CAST(SUBSTRING(referencia, 2) AS SIGNED)) 
-            'FROM productos
-            'WHERE sucursal = @idsucursal
-            'AND referencia NOT LIKE 'B%';", conexion)
-            '    cmdRef.Parameters.AddWithValue("@idsucursal", id_sucursal)
-            '    Dim resultado As Object = cmdRef.ExecuteScalar()
-            '    If resultado IsNot DBNull.Value Then
-            '        ultima_referencia = Convert.ToInt32(resultado)
-            '    Else
-            '        ultima_referencia = 0
-            '    End If
-            'End Using
-
-            ' Incrementar el número de referencia
-            'ultima_referencia += 1
-            Using cmdRef As New MySql.Data.MySqlClient.MySqlCommand(
-                "SELECT MAX(CAST(referencia AS SIGNED))
-                FROM productos
-                WHERE sucursal = @idsucursal;", conexion)
-
+            Using cmdRef As New MySql.Data.MySqlClient.MySqlCommand("SELECT MAX(CAST(SUBSTRING(referencia, 2) AS SIGNED)) 
+            FROM productos
+            WHERE sucursal = @idsucursal
+            AND referencia NOT LIKE 'B%';", conexion)
                 cmdRef.Parameters.AddWithValue("@idsucursal", id_sucursal)
-
                 Dim resultado As Object = cmdRef.ExecuteScalar()
-
-                If resultado IsNot DBNull.Value AndAlso resultado IsNot Nothing Then
+                If resultado IsNot DBNull.Value Then
                     ultima_referencia = Convert.ToInt32(resultado)
+                Else
+                    ultima_referencia = 0
                 End If
             End Using
 
-            ' Incrementar referencia
-            Dim nueva_referencia As Integer
-            If id_sucursal = 1 Then
-                nueva_referencia = ultima_referencia + 1
-            End If
+            'Incrementar el número de referencia
+            ultima_referencia += 1
+
+
+            '----------------------------------------------------------------------------------------------------
+            'Using cmdRef As New MySql.Data.MySqlClient.MySqlCommand(
+            '    "SELECT MAX(CAST(referencia AS SIGNED))
+            '    FROM productos
+            '    WHERE sucursal = @idsucursal;", conexion)
+
+            '    cmdRef.Parameters.AddWithValue("@idsucursal", id_sucursal)
+
+            '    Dim resultado As Object = cmdRef.ExecuteScalar()
+
+            '    If resultado IsNot DBNull.Value AndAlso resultado IsNot Nothing Then
+            '        ultima_referencia = Convert.ToInt32(resultado)
+            '    End If
+            'End Using
+
+            '' Incrementar referencia
+            'Dim nueva_referencia As Integer
+            'If id_sucursal = 1 Then
+            '    nueva_referencia = ultima_referencia + 1
+            'End If
+            '-----------------------------------------------------------------------------------------------------
+
+
 
             ' Construir la nueva referencia según la lógica establecida
-            'Dim nueva_referencia As String
-            'If id_sucursal = 1 Then
-            '    nueva_referencia = "E" & ultima_referencia
-            'ElseIf id_sucursal = 2 Then
-            '    nueva_referencia = "D" & ultima_referencia
-            'Else
-            '    nueva_referencia = "Otro" & ultima_referencia
-            'End If
+            Dim nueva_referencia As String
+            If id_sucursal = 1 Then
+                nueva_referencia = "I" & ultima_referencia
+            ElseIf id_sucursal = 2 Then
+                nueva_referencia = "P" & ultima_referencia
+            Else
+                nueva_referencia = "Otro" & ultima_referencia
+            End If
 
             ' Inserción de datos en la tabla productos
             If Not ch_adicional.Checked Then
