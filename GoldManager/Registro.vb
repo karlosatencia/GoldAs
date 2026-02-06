@@ -667,6 +667,10 @@ Public Class Registro
             End If
         End If
 
+        'Talla
+        If jt_talla.Text.Trim() <> "" Then
+            partes.Add("Talla " & jt_talla.Text.Trim())
+        End If
         ' 3️⃣ Largo (Cm)
         If jt_largo.Text <> "" Then
             partes.Add(jt_largo.Text & " Cm")
