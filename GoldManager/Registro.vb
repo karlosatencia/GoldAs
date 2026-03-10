@@ -1456,7 +1456,7 @@ Public Class Registro
                     Dim handle As String = (nombre & "-" & referencia).Replace(" ", "-")
                     Dim title As String = nombre
                     Dim bodyHTML As String = nombre.ToLower()
-                    Dim vendor As String = "Joyería Iconiq"
+                    Dim vendor As String = "Joyería A.S"
                     Dim productCategory As String = "Joyería en Ropa y accesorios"
 
                     Dim marca As Integer = reader.GetInt32("marca")
