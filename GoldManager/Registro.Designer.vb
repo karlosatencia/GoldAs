@@ -204,7 +204,7 @@ Partial Class Registro
         ' lst_marca_tabla
         ' 
         lst_marca_tabla.DropDownStyle = ComboBoxStyle.DropDownList
-        lst_marca_tabla.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        lst_marca_tabla.Font = New Font("Microsoft Sans Serif", 9.0F, FontStyle.Regular, GraphicsUnit.Point)
         lst_marca_tabla.FormattingEnabled = True
         lst_marca_tabla.Items.AddRange(New Object() {"Seleccione", "Nacional", "Italy"})
         lst_marca_tabla.Location = New Point(447, 79)
@@ -240,13 +240,14 @@ Partial Class Registro
         ' lst_categoria_precio
         ' 
         lst_categoria_precio.DropDownStyle = ComboBoxStyle.DropDownList
+        lst_categoria_precio.Enabled = False
         lst_categoria_precio.Font = New Font("Microsoft Sans Serif", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point)
         lst_categoria_precio.FormattingEnabled = True
         lst_categoria_precio.Items.AddRange(New Object() {"Precio contado"})
-        lst_categoria_precio.Location = New Point(605, 380)
+        lst_categoria_precio.Location = New Point(593, 380)
         lst_categoria_precio.Margin = New Padding(4, 3, 4, 3)
         lst_categoria_precio.Name = "lst_categoria_precio"
-        lst_categoria_precio.Size = New Size(120, 28)
+        lst_categoria_precio.Size = New Size(132, 28)
         lst_categoria_precio.TabIndex = 16
         lst_categoria_precio.SelectedIndex = 0
         ' 
@@ -572,7 +573,7 @@ Partial Class Registro
         Tab_Consultar.Controls.Add(TabPage2)
         Tab_Consultar.Controls.Add(TabPage6)
         Tab_Consultar.Dock = DockStyle.Fill
-        Tab_Consultar.Font = New Font("Segoe UI Semilight", 10F, FontStyle.Regular, GraphicsUnit.Point)
+        Tab_Consultar.Font = New Font("Segoe UI Semilight", 10.0F, FontStyle.Regular, GraphicsUnit.Point)
         Tab_Consultar.Location = New Point(0, 0)
         Tab_Consultar.Margin = New Padding(4, 3, 4, 3)
         Tab_Consultar.Name = "Tab_Consultar"
@@ -637,7 +638,7 @@ Partial Class Registro
         TabPage1.Controls.Add(Label4)
         TabPage1.Controls.Add(Label3)
         TabPage1.Controls.Add(PictureBox1)
-        TabPage1.Font = New Font("Segoe UI Semilight", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        TabPage1.Font = New Font("Segoe UI Semilight", 9.0F, FontStyle.Regular, GraphicsUnit.Point)
         TabPage1.Location = New Point(4, 26)
         TabPage1.Margin = New Padding(4, 3, 4, 3)
         TabPage1.Name = "TabPage1"
@@ -737,7 +738,7 @@ Partial Class Registro
         ' 
         ch_oro_blanco.AutoSize = True
         ch_oro_blanco.Enabled = False
-        ch_oro_blanco.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        ch_oro_blanco.Font = New Font("Microsoft Sans Serif", 9.0F, FontStyle.Regular, GraphicsUnit.Point)
         ch_oro_blanco.Location = New Point(284, 337)
         ch_oro_blanco.Name = "ch_oro_blanco"
         ch_oro_blanco.Size = New Size(87, 19)
@@ -749,7 +750,7 @@ Partial Class Registro
         ' 
         ch_oro_rosa.AutoSize = True
         ch_oro_rosa.Enabled = False
-        ch_oro_rosa.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        ch_oro_rosa.Font = New Font("Microsoft Sans Serif", 9.0F, FontStyle.Regular, GraphicsUnit.Point)
         ch_oro_rosa.Location = New Point(203, 337)
         ch_oro_rosa.Name = "ch_oro_rosa"
         ch_oro_rosa.Size = New Size(78, 19)
@@ -761,7 +762,7 @@ Partial Class Registro
         ' 
         ch_oro_amarillo.AutoSize = True
         ch_oro_amarillo.Enabled = False
-        ch_oro_amarillo.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point)
+        ch_oro_amarillo.Font = New Font("Microsoft Sans Serif", 9.0F, FontStyle.Regular, GraphicsUnit.Point)
         ch_oro_amarillo.Location = New Point(110, 337)
         ch_oro_amarillo.Name = "ch_oro_amarillo"
         ch_oro_amarillo.Size = New Size(94, 19)
@@ -812,6 +813,7 @@ Partial Class Registro
         ' 
         lst_sucursall.DropDownStyle = ComboBoxStyle.DropDownList
         lst_sucursall.DropDownWidth = 114
+        lst_sucursall.Enabled = False
         lst_sucursall.Font = New Font("Microsoft Sans Serif", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point)
         lst_sucursall.FormattingEnabled = True
         lst_sucursall.Location = New Point(483, 232)
@@ -894,7 +896,7 @@ Partial Class Registro
         ' 
         ' btn_actualizar_precios
         ' 
-        btn_actualizar_precios.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        btn_actualizar_precios.Font = New Font("Microsoft Sans Serif", 12.0F, FontStyle.Regular, GraphicsUnit.Point)
         btn_actualizar_precios.Location = New Point(530, 330)
         btn_actualizar_precios.Name = "btn_actualizar_precios"
         btn_actualizar_precios.Size = New Size(201, 72)
@@ -1392,7 +1394,7 @@ Partial Class Registro
         ' 
         ' btn_act_automatico
         ' 
-        btn_act_automatico.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        btn_act_automatico.Font = New Font("Microsoft Sans Serif", 12.0F, FontStyle.Regular, GraphicsUnit.Point)
         btn_act_automatico.Location = New Point(466, 508)
         btn_act_automatico.Name = "btn_act_automatico"
         btn_act_automatico.Size = New Size(190, 39)
@@ -1509,7 +1511,7 @@ Partial Class Registro
         ' TabPage6
         ' 
         TabPage6.Controls.Add(SplitContainer1)
-        TabPage6.Font = New Font("Segoe UI Semilight", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        TabPage6.Font = New Font("Segoe UI Semilight", 12.0F, FontStyle.Regular, GraphicsUnit.Point)
         TabPage6.Location = New Point(4, 26)
         TabPage6.Name = "TabPage6"
         TabPage6.Padding = New Padding(3)
@@ -1536,7 +1538,7 @@ Partial Class Registro
         SplitContainer1.Panel1.Controls.Add(Label27)
         SplitContainer1.Panel1.Controls.Add(Label29)
         SplitContainer1.Panel1.Controls.Add(Label28)
-        SplitContainer1.Panel1.Font = New Font("Segoe UI Semilight", 18F, FontStyle.Bold, GraphicsUnit.Point)
+        SplitContainer1.Panel1.Font = New Font("Segoe UI Semilight", 18.0F, FontStyle.Bold, GraphicsUnit.Point)
         ' 
         ' SplitContainer1.Panel2
         ' 
@@ -1552,7 +1554,7 @@ Partial Class Registro
         ' 
         ' ComboBox1
         ' 
-        ComboBox1.Font = New Font("Segoe UI Semilight", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        ComboBox1.Font = New Font("Segoe UI Semilight", 12.0F, FontStyle.Regular, GraphicsUnit.Point)
         ComboBox1.FormattingEnabled = True
         ComboBox1.Location = New Point(129, 234)
         ComboBox1.Name = "ComboBox1"
@@ -1561,7 +1563,7 @@ Partial Class Registro
         ' 
         ' TextBox2
         ' 
-        TextBox2.Font = New Font("Segoe UI Semilight", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        TextBox2.Font = New Font("Segoe UI Semilight", 12.0F, FontStyle.Regular, GraphicsUnit.Point)
         TextBox2.Location = New Point(129, 184)
         TextBox2.Name = "TextBox2"
         TextBox2.Size = New Size(240, 29)
@@ -1569,7 +1571,7 @@ Partial Class Registro
         ' 
         ' TextBox1
         ' 
-        TextBox1.Font = New Font("Segoe UI Semilight", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        TextBox1.Font = New Font("Segoe UI Semilight", 12.0F, FontStyle.Regular, GraphicsUnit.Point)
         TextBox1.Location = New Point(129, 134)
         TextBox1.Name = "TextBox1"
         TextBox1.Size = New Size(240, 29)
@@ -1577,7 +1579,7 @@ Partial Class Registro
         ' 
         ' Button1
         ' 
-        Button1.Font = New Font("Segoe UI Semilight", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        Button1.Font = New Font("Segoe UI Semilight", 12.0F, FontStyle.Bold, GraphicsUnit.Point)
         Button1.Location = New Point(129, 311)
         Button1.Name = "Button1"
         Button1.Size = New Size(114, 50)
@@ -1588,7 +1590,7 @@ Partial Class Registro
         ' Label30
         ' 
         Label30.AutoSize = True
-        Label30.Font = New Font("Segoe UI Semilight", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        Label30.Font = New Font("Segoe UI Semilight", 12.0F, FontStyle.Regular, GraphicsUnit.Point)
         Label30.Location = New Point(16, 234)
         Label30.Name = "Label30"
         Label30.Size = New Size(44, 21)
@@ -1598,7 +1600,7 @@ Partial Class Registro
         ' Label27
         ' 
         Label27.AutoSize = True
-        Label27.Font = New Font("Segoe UI Semilight", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        Label27.Font = New Font("Segoe UI Semilight", 12.0F, FontStyle.Regular, GraphicsUnit.Point)
         Label27.Location = New Point(16, 184)
         Label27.Name = "Label27"
         Label27.Size = New Size(70, 21)
@@ -1617,7 +1619,7 @@ Partial Class Registro
         ' Label28
         ' 
         Label28.AutoSize = True
-        Label28.Font = New Font("Segoe UI Semilight", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        Label28.Font = New Font("Segoe UI Semilight", 12.0F, FontStyle.Regular, GraphicsUnit.Point)
         Label28.Location = New Point(16, 134)
         Label28.Name = "Label28"
         Label28.Size = New Size(106, 21)
@@ -1626,7 +1628,7 @@ Partial Class Registro
         ' 
         ' ComboBox2
         ' 
-        ComboBox2.Font = New Font("Segoe UI Semilight", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        ComboBox2.Font = New Font("Segoe UI Semilight", 12.0F, FontStyle.Regular, GraphicsUnit.Point)
         ComboBox2.FormattingEnabled = True
         ComboBox2.Location = New Point(190, 84)
         ComboBox2.Name = "ComboBox2"
@@ -1635,7 +1637,7 @@ Partial Class Registro
         ' 
         ' Button2
         ' 
-        Button2.Font = New Font("Segoe UI Semilight", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        Button2.Font = New Font("Segoe UI Semilight", 12.0F, FontStyle.Bold, GraphicsUnit.Point)
         Button2.Location = New Point(250, 169)
         Button2.Name = "Button2"
         Button2.Size = New Size(114, 50)
@@ -1645,7 +1647,7 @@ Partial Class Registro
         ' 
         ' TextBox3
         ' 
-        TextBox3.Font = New Font("Segoe UI Semilight", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        TextBox3.Font = New Font("Segoe UI Semilight", 12.0F, FontStyle.Regular, GraphicsUnit.Point)
         TextBox3.Location = New Point(190, 126)
         TextBox3.Name = "TextBox3"
         TextBox3.Size = New Size(240, 29)
@@ -1654,7 +1656,7 @@ Partial Class Registro
         ' Label32
         ' 
         Label32.AutoSize = True
-        Label32.Font = New Font("Segoe UI Semilight", 12F, FontStyle.Regular, GraphicsUnit.Point)
+        Label32.Font = New Font("Segoe UI Semilight", 12.0F, FontStyle.Regular, GraphicsUnit.Point)
         Label32.Location = New Point(105, 87)
         Label32.Name = "Label32"
         Label32.Size = New Size(81, 21)
@@ -1695,7 +1697,7 @@ Partial Class Registro
         ' Label31
         ' 
         Label31.AutoSize = True
-        Label31.Font = New Font("Segoe UI Semilight", 18F, FontStyle.Bold, GraphicsUnit.Point)
+        Label31.Font = New Font("Segoe UI Semilight", 18.0F, FontStyle.Bold, GraphicsUnit.Point)
         Label31.Location = New Point(170, 37)
         Label31.Name = "Label31"
         Label31.Size = New Size(239, 32)
@@ -1713,7 +1715,7 @@ Partial Class Registro
         ' 
         ' Registro
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(982, 600)
@@ -1722,7 +1724,7 @@ Partial Class Registro
         Margin = New Padding(4, 3, 4, 3)
         Name = "Registro"
         StartPosition = FormStartPosition.CenterScreen
-        Text = "Gold Manager - Iconiq"
+        Text = "Gold Manager - A.S"
         Tab_Consultar.ResumeLayout(False)
         TabPage1.ResumeLayout(False)
         TabPage1.PerformLayout()
@@ -1767,7 +1769,7 @@ Partial Class Registro
         jt_cantidad.Text = ""
         jt_peso.Text = ""
         jt_peso_total.Text = "Pendiente"
-        lst_categoria_precio.Text = "Seleccione"
+        'lst_categoria_precio.Text = "Seleccione"
         jt_nombre_compuesto.Text = ""
         jt_valor_gramo.Text = "Pendiente"
         jt_valor_unitario.Text = "Pendiente"
@@ -1794,7 +1796,7 @@ Partial Class Registro
                 lst_marca.Enabled = True
                 jt_cantidad.Enabled = True
                 jt_peso.Enabled = True
-                lst_categoria_precio.Enabled = True
+                'lst_categoria_precio.Enabled = True
                 rb_mujer.Visible = False
                 rb_hombre.Visible = False
                 rb_mujer.Checked = False
@@ -1822,7 +1824,7 @@ Partial Class Registro
                 jt_descripcion.Enabled = True
                 lst_marca.Enabled = True
                 jt_peso.Enabled = True
-                lst_categoria_precio.Enabled = True
+                'lst_categoria_precio.Enabled = True
                 rb_mujer.Visible = False
                 rb_hombre.Visible = False
                 rb_mujer.Checked = False
@@ -1852,7 +1854,7 @@ Partial Class Registro
                 lst_broche.Enabled = False
                 jt_cantidad.Enabled = True
                 jt_peso.Enabled = True
-                lst_categoria_precio.Enabled = True
+                'lst_categoria_precio.Enabled = True
                 rb_mujer.Enabled = True
                 rb_mujer.Visible = True
                 rb_hombre.Enabled = True
@@ -1881,7 +1883,7 @@ Partial Class Registro
                 lst_broche.Enabled = False
                 jt_cantidad.Enabled = True
                 jt_peso.Enabled = True
-                lst_categoria_precio.Enabled = True
+                'lst_categoria_precio.Enabled = True
                 ch_adicional.Checked = False
                 ch_adicional.Enabled = True
                 lb_compra_pircing.Enabled = False
@@ -1905,7 +1907,7 @@ Partial Class Registro
                 lst_broche.Enabled = False
                 jt_cantidad.Enabled = True
                 jt_peso.Enabled = True
-                lst_categoria_precio.Enabled = True
+                'lst_categoria_precio.Enabled = True
                 rb_mujer.Visible = False
                 rb_hombre.Visible = False
                 rb_mujer.Checked = False
@@ -1935,7 +1937,7 @@ Partial Class Registro
                 jt_cantidad.Enabled = True
                 jt_peso.Enabled = True
                 jt_peso_total.Enabled = False
-                lst_categoria_precio.Enabled = True
+                'lst_categoria_precio.Enabled = True
                 jt_nombre_compuesto.Enabled = False
                 rb_mujer.Visible = False
                 rb_hombre.Visible = False
@@ -1966,7 +1968,7 @@ Partial Class Registro
                 jt_cantidad.Enabled = True
                 jt_peso.Enabled = False
                 jt_peso_total.Enabled = False
-                lst_categoria_precio.Enabled = False
+                'lst_categoria_precio.Enabled = False
                 jt_nombre_compuesto.Enabled = False
                 rb_mujer.Visible = False
                 rb_hombre.Visible = False
@@ -1991,7 +1993,7 @@ Partial Class Registro
                 jt_cantidad.Enabled = False
                 jt_peso.Enabled = False
                 jt_peso_total.Enabled = False
-                lst_categoria_precio.Enabled = False
+                'lst_categoria_precio.Enabled = False
                 jt_nombre_compuesto.Enabled = False
                 rb_mujer.Visible = False
                 rb_hombre.Visible = False
@@ -2044,7 +2046,7 @@ Partial Class Registro
             jt_valor_gramo.Text = "Pendiente"
             jt_valor_unitario.Text = "Pendiente"
             jt_costo_total.Text = "Pendiente"
-            lst_categoria_precio.Text = "Seleccione"
+            'lst_categoria_precio.Text = "Seleccione"
             lst_broche.Text = "Seleccione"
             jt_compra.Enabled = False
             jt_compra.Text = ""
