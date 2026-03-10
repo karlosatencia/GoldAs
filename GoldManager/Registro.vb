@@ -652,7 +652,7 @@ Public Class Registro
 
             ' Inserción de datos en la tabla productos
             If Not ch_adicional.Checked Then
-                Dim query As String = "INSERT INTO productos (nombre, marca, cantidad, peso, peso_total, categoria_producto, valor_unitario, costo_total, valor_gramo, valor_unitario_compra, ct, sucursal, broche, vbroche, referencia, idcompra) VALUES (@nombre, @marca, @cantidad, @peso, @peso_total, @categoria_producto, @valor_unitario, @costo_total, @valor_gramo, @valor_unitario_compra, @ct, @idsucursal, @broche, @vbroche, @referencia, @idcompra)"
+                Dim query As String = "INSERT INTO productos (nombre, marca, cantidad, peso, peso_total, categoria_producto, valor_unitario, costo_total, valor_gramo, valor_unitario_compra, ct, sucursal, broche, vbroche, referencia, idcompra, created_date) VALUES (@nombre, @marca, @cantidad, @peso, @peso_total, @categoria_producto, @valor_unitario, @costo_total, @valor_gramo, @valor_unitario_compra, @ct, @idsucursal, @broche, @vbroche, @referencia, @idcompra, @created_date)"
                 Using cmd As New MySql.Data.MySqlClient.MySqlCommand(query, conexion)
                     cmd.Parameters.AddWithValue("@nombre", nombre_compuesto)
                     cmd.Parameters.AddWithValue("@marca", If(lst_marca.Text = "Nacional", 1, 2))
@@ -667,6 +667,7 @@ Public Class Registro
                     cmd.Parameters.AddWithValue("@ct", ct)
                     cmd.Parameters.AddWithValue("@referencia", nueva_referencia)
                     cmd.Parameters.AddWithValue("@idsucursal", id_sucursal)
+                    cmd.Parameters.AddWithValue("@created_date", DateTime.Now)
 
                     If lst_marca.Text = "Nacional" AndAlso lst_broche.Text <> "Seleccione" Then
                         Dim broche As Decimal = Convert.ToDecimal(lst_broche.Text)
@@ -718,7 +719,7 @@ Public Class Registro
                 Dim cantidad As Decimal = Convert.ToDecimal(jt_cantidad.Text)
                 Dim costo_total As Decimal = cantidad * valor_unitario
 
-                Dim query As String = "INSERT INTO productos (nombre, marca, cantidad, peso, peso_total, categoria_producto, valor_unitario, costo_total, valor_gramo, valor_prenda, valor_unitario_compra, ct, sucursal, referencia, idcompra) VALUES (@nombre, @marca, @cantidad, @peso, @peso_total, @categoria_producto, @valor_unitario, @costo_total, @valor_gramo, @valor_prenda, @valor_unitario_compra, @ct, @idsucursal, @referencia, @idcompra)"
+                Dim query As String = "INSERT INTO productos (nombre, marca, cantidad, peso, peso_total, categoria_producto, valor_unitario, costo_total, valor_gramo, valor_prenda, valor_unitario_compra, ct, sucursal, referencia, idcompra, created_date) VALUES (@nombre, @marca, @cantidad, @peso, @peso_total, @categoria_producto, @valor_unitario, @costo_total, @valor_gramo, @valor_prenda, @valor_unitario_compra, @ct, @idsucursal, @referencia, @idcompra, @created_date)"
 
                 Using cmd As New MySql.Data.MySqlClient.MySqlCommand(query, conexion)
                     cmd.Parameters.AddWithValue("@nombre", nombre_compuesto)
@@ -736,6 +737,7 @@ Public Class Registro
                     cmd.Parameters.AddWithValue("@idsucursal", id_sucursal)
                     cmd.Parameters.AddWithValue("@referencia", nueva_referencia)
                     cmd.Parameters.AddWithValue("@idcompra", idcompra)
+                    cmd.Parameters.AddWithValue("@created_date", DateTime.Now)
                     If conexion.State = ConnectionState.Closed Then
                         conexion.Open()
                     End If
@@ -850,8 +852,8 @@ Public Class Registro
 
             ' Inserción de datos en la tabla productos
             If Not ch_adicional.Checked Then
-                    Dim query As String = "INSERT INTO productos (nombre, marca, cantidad, peso, peso_total, categoria_producto, valor_unitario, costo_total, valor_gramo, valor_unitario_compra, ct, sucursal, referencia, idcompra) VALUES (@nombre, @marca, @cantidad, @peso, @peso_total, @categoria_producto, @valor_unitario, @costo_total, @valor_gramo, @valor_unitario_compra, @ct, @idsucursal, @referencia, @idcompra)"
-                    Using cmd As New MySql.Data.MySqlClient.MySqlCommand(query, conexion)
+                Dim query As String = "INSERT INTO productos (nombre, marca, cantidad, peso, peso_total, categoria_producto, valor_unitario, costo_total, valor_gramo, valor_unitario_compra, ct, sucursal, referencia, idcompra, created_date) VALUES (@nombre, @marca, @cantidad, @peso, @peso_total, @categoria_producto, @valor_unitario, @costo_total, @valor_gramo, @valor_unitario_compra, @ct, @idsucursal, @referencia, @idcompra, @created_date)"
+                Using cmd As New MySql.Data.MySqlClient.MySqlCommand(query, conexion)
                         cmd.Parameters.AddWithValue("@nombre", nombre_compuesto)
                         cmd.Parameters.AddWithValue("@marca", If(lst_marca.Text = "Nacional", 1, 2))
                         cmd.Parameters.AddWithValue("@cantidad", jt_cantidad.Text)
@@ -865,8 +867,9 @@ Public Class Registro
                         cmd.Parameters.AddWithValue("@ct", "pp")
                         cmd.Parameters.AddWithValue("@idsucursal", id_sucursal)
                         cmd.Parameters.AddWithValue("@referencia", nueva_referencia)
-                        cmd.Parameters.AddWithValue("@idcompra", idcompra)
-                        If conexion.State = ConnectionState.Closed Then
+                    cmd.Parameters.AddWithValue("@idcompra", idcompra)
+                    cmd.Parameters.AddWithValue("@created_date", DateTime.Now)
+                    If conexion.State = ConnectionState.Closed Then
                             conexion.Open()
                         End If
                         cmd.ExecuteNonQuery()
