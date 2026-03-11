@@ -54,23 +54,23 @@ Public Class ImprimirIds
         End If
 
         '' Verificar que el valor de jt_desde y jt_hasta sigan el formato correcto (letra + números)
-        'Dim regex As New Text.RegularExpressions.Regex("^[A-Za-z]+\d+$")
-        'If Not regex.IsMatch(jt_desde.Text) OrElse Not regex.IsMatch(jt_hasta.Text) Then
-        '    MessageBox.Show("Debe ingresar valores alfanuméricos válidos en ambos campos (por ejemplo, B100 o D200).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        '    Return False
-        'End If
-
-        'Verificar que sean valores numéricos
-        Dim desde As Integer
-        Dim hasta As Integer
-
-        If Not Integer.TryParse(jt_desde.Text.Trim(), desde) _
-        OrElse Not Integer.TryParse(jt_hasta.Text.Trim(), hasta) Then
-
-            MessageBox.Show("Los valores 'Desde' y 'Hasta' deben ser numéricos.",
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Dim regex As New Text.RegularExpressions.Regex("^[A-Za-z]+\d+$")
+        If Not regex.IsMatch(jt_desde.Text) OrElse Not regex.IsMatch(jt_hasta.Text) Then
+            MessageBox.Show("Debe ingresar valores alfanuméricos válidos en ambos campos (por ejemplo, A100 o A200).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End If
+
+        'Verificar que sean valores numéricos
+        'Dim desde As Integer
+        'Dim hasta As Integer
+
+        'If Not Integer.TryParse(jt_desde.Text.Trim(), desde) _
+        'OrElse Not Integer.TryParse(jt_hasta.Text.Trim(), hasta) Then
+
+        '    MessageBox.Show("Los valores 'Desde' y 'Hasta' deben ser numéricos.",
+        '            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '    Return False
+        'End If
 
         ' Extraer las partes alfabética y numérica de jt_desde y jt_hasta
         Dim prefixDesde As String = System.Text.RegularExpressions.Regex.Match(jt_desde.Text, "^[A-Za-z]+").Value

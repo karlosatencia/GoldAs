@@ -1322,9 +1322,8 @@ Public Class Registro
                 Dim row As Integer = 2
                 While reader.Read()
                     ws.Cell(row, 1).Value = reader.GetString(1) ' Nombre
-                    ws.Cell(row, 2).Value = reader.GetString(16) ' ID - Referencia
-                    'ws.Cell(row, 3).Value = reader.GetInt32(13) ' Sucursal principal
-                    ws.Cell(row, 3).Value = 1 ' Sucursal principal
+                    ws.Cell(row, 2).Value = reader.GetString(15) ' ID - Referencia
+                    ws.Cell(row, 3).Value = reader.GetInt32(12) ' Sucursal principal
                     ws.Cell(row, 4).Value = "" ' Código de barras
                     ws.Cell(row, 5).Value = 3 ' Tipo de artículo
                     ws.Cell(row, 6).Value = reader.GetInt32(6) ' Categoría
@@ -1339,7 +1338,7 @@ Public Class Registro
                     ws.Cell(row, 15).Value = 1 ' Habilitar en alquiler
                     ws.Cell(row, 16).Value = "" ' Depósito
                     ws.Cell(row, 17).Value = 2 ' Impuesto
-                    ws.Cell(row, 18).Value = reader.GetDecimal(11) ' Valor unitario de compra
+                    ws.Cell(row, 18).Value = reader.GetDecimal(10) ' Valor unitario de compra
                     ws.Cell(row, 19).Value = "" ' Precio mínimo venta
                     ws.Cell(row, 20).Value = reader.GetDecimal(4) ' Valor referencia
                     ws.Cell(row, 21).Value = "" ' Porcentaje referencia
@@ -1403,137 +1402,229 @@ Public Class Registro
 
         If lst_compra_rep.SelectedItem Is Nothing Then
             MessageBox.Show("Por favor, seleccione una compra.")
-            Return
-        End If
+        Else
+            Try
+                'Abrir la conexión a la base de datos
+                conexion.Open()
 
-        Try
-            conexion.Open()
-            Dim selectedCompraID As Integer = CInt(lst_compra_rep.SelectedItem)
+                'Crear un objeto para manejar el archivo de Excel
+                Dim wb As New ClosedXML.Excel.XLWorkbook()
+                Dim ws As IXLWorksheet = wb.Worksheets.Add("Productos")
+                Dim selectedCompraID As Integer = CInt(lst_compra_rep.SelectedItem)
+                'Ejecutar la consulta SQL para obtener los datos de la tabla Productos
+                Dim sql As String = "SELECT referencia, nombre, marca, peso, categoria_producto, valor_unitario FROM productos WHERE idcompra = @compraID"
+                Dim cmd As New MySql.Data.MySqlClient.MySqlCommand(sql, conexion)
+                cmd.Parameters.AddWithValue("@compraID", selectedCompraID)
+                Dim reader As MySql.Data.MySqlClient.MySqlDataReader = cmd.ExecuteReader()
+                If Not reader.HasRows Then
+                    MessageBox.Show("No se encontraron registros para la compra especificada.")
+                    conexion.Close()
+                    Return
+                End If
+                'Agregamos las columnas
+                ws.Cell(1, 1).Value = "Handle"
+                ws.Cell(1, 2).Value = "Title"
+                ws.Cell(1, 3).Value = "Body (HTML)"
+                ws.Cell(1, 4).Value = "Vendor"
+                ws.Cell(1, 5).Value = "Product Category"
+                ws.Cell(1, 6).Value = "Type"
+                ws.Cell(1, 7).Value = "Tags"
+                ws.Cell(1, 8).Value = "Published"
+                ws.Cell(1, 9).Value = "Option1 Name"
+                ws.Cell(1, 10).Value = "Option1 Value"
+                ws.Cell(1, 11).Value = "Option2 Name"
+                ws.Cell(1, 12).Value = "Option2 Value"
+                ws.Cell(1, 13).Value = "Option3 Name"
+                ws.Cell(1, 14).Value = "Option3 Value"
+                ws.Cell(1, 15).Value = "Variant SKU"
+                ws.Cell(1, 16).Value = "Variant Grams"
+                ws.Cell(1, 17).Value = "Variant Inventory Tracker"
+                ws.Cell(1, 18).Value = "Variant Inventory Qty"
+                ws.Cell(1, 19).Value = "Variant Inventory Policy"
+                ws.Cell(1, 20).Value = "Variant Fulfillment Service"
+                ws.Cell(1, 21).Value = "Variant Price"
+                ws.Cell(1, 22).Value = "Variant Compare At Price"
+                ws.Cell(1, 23).Value = "Variant Requires Shipping"
+                ws.Cell(1, 24).Value = "Variant Taxable"
+                ws.Cell(1, 25).Value = "Variant Barcode"
+                ws.Cell(1, 26).Value = "Image Src"
+                ws.Cell(1, 27).Value = "Image Position"
+                ws.Cell(1, 28).Value = "Image Alt Text"
+                ws.Cell(1, 29).Value = "Gift Card"
+                ws.Cell(1, 30).Value = "SEO Title"
+                ws.Cell(1, 31).Value = "SEO Description"
+                ws.Cell(1, 32).Value = "Google Shopping / Google Product Category"
+                ws.Cell(1, 33).Value = "Google Shopping / Gender"
+                ws.Cell(1, 34).Value = "Google Shopping / Age Group"
+                ws.Cell(1, 35).Value = "Google Shopping / MPN"
+                ws.Cell(1, 36).Value = "Google Shopping / AdWords Grouping"
+                ws.Cell(1, 37).Value = "Google Shopping / AdWords Labels"
+                ws.Cell(1, 38).Value = "Google Shopping / Condition"
+                ws.Cell(1, 39).Value = "Google Shopping / Custom Product"
+                ws.Cell(1, 40).Value = "Google Shopping / Custom Label 0"
+                ws.Cell(1, 41).Value = "Google Shopping / Custom Label 1"
+                ws.Cell(1, 42).Value = "Google Shopping / Custom Label 2"
+                ws.Cell(1, 43).Value = "Google Shopping / Custom Label 3"
+                ws.Cell(1, 44).Value = "Google Shopping / Custom Label 4"
+                ws.Cell(1, 45).Value = "Variant Image"
+                ws.Cell(1, 46).Value = "Variant Weight Unit"
+                ws.Cell(1, 47).Value = "Variant Tax Code"
+                ws.Cell(1, 48).Value = "Cost per item"
+                ws.Cell(1, 49).Value = "Price / Internacional"
+                ws.Cell(1, 50).Value = "Compare At Price / Internacional"
+                ws.Cell(1, 51).Value = "Status"
 
-            Dim sql As String = "SELECT referencia, nombre, marca, peso, categoria_producto, valor_unitario FROM productos WHERE idcompra = @compraID"
-            Dim cmd As New MySql.Data.MySqlClient.MySqlCommand(sql, conexion)
-            cmd.Parameters.AddWithValue("@compraID", selectedCompraID)
-            Dim reader As MySql.Data.MySqlClient.MySqlDataReader = cmd.ExecuteReader()
-
-            If Not reader.HasRows Then
-                MessageBox.Show("No se encontraron registros para la compra especificada.")
-                conexion.Close()
-                Return
-            End If
-
-            Dim saveFileDialog1 As New SaveFileDialog()
-            saveFileDialog1.Filter = "Archivo CSV (*.csv)|*.csv"
-            saveFileDialog1.Title = "Guardar como"
-            saveFileDialog1.ShowDialog()
-
-            If saveFileDialog1.FileName = "" Then
-                conexion.Close()
-                Return
-            End If
-
-            Using sw As New StreamWriter(saveFileDialog1.FileName, False, Encoding.UTF8)
-
-                ' CABECERAS
-                Dim headers As String() = {
-                "Handle", "Title", "Body (HTML)", "Vendor", "Product Category", "Type", "Tags", "Published",
-                "Option1 Name", "Option1 Value", "Option2 Name", "Option2 Value", "Option3 Name", "Option3 Value",
-                "Variant SKU", "Variant Grams", "Variant Inventory Tracker", "Variant Inventory Qty",
-                "Variant Inventory Policy", "Variant Fulfillment Service", "Variant Price", "Variant Compare At Price",
-                "Variant Requires Shipping", "Variant Taxable", "Variant Barcode", "Image Src", "Image Position",
-                "Image Alt Text", "Gift Card", "SEO Title", "SEO Description", "Google Shopping / Google Product Category",
-                "Google Shopping / Gender", "Google Shopping / Age Group", "Google Shopping / MPN",
-                "Google Shopping / AdWords Grouping", "Google Shopping / AdWords Labels",
-                "Google Shopping / Condition", "Google Shopping / Custom Product", "Google Shopping / Custom Label 0",
-                "Google Shopping / Custom Label 1", "Google Shopping / Custom Label 2", "Google Shopping / Custom Label 3",
-                "Google Shopping / Custom Label 4", "Variant Image", "Variant Weight Unit", "Variant Tax Code",
-                "Cost per item", "Price / Internacional", "Compare At Price / Internacional", "Status"
-            }
-                sw.WriteLine(String.Join(",", headers))
-
-                While reader.Read()
-                    Dim nombre As String = reader.GetString("nombre")
-                    Dim referencia As String = reader("referencia").ToString()
-                    Dim handle As String = (nombre & "-" & referencia).Replace(" ", "-")
-                    Dim title As String = nombre
-                    Dim bodyHTML As String = nombre.ToLower()
-                    Dim vendor As String = "Joyería A.S"
-                    Dim productCategory As String = "Joyería en Ropa y accesorios"
+                Dim row As Integer = 2 'Iniciamos en la segunda fila para agregar los datos a partir de allí
+                While reader.Read() 'Mientras haya datos en el resultado de la consulta
+                    'Obtenemos el valor del campo nombre y eliminamos los espacios en blanco
+                    Dim nombre As String = reader.GetString("nombre").Replace(" ", "-")
+                    'Agregamos el valor en la columna Handle de la fila correspondiente
+                    ws.Cell(row, 1).Value = nombre + "/" + reader("referencia").ToString()
+                    ws.Cell(row, 2).Value = reader("nombre").ToString()
+                    ws.Cell(row, 3).Value = reader("nombre").ToString().ToLower()
+                    ws.Cell(row, 4).Value = "Joyería A.S"
+                    ws.Cell(row, 5).Value = "Ropa y accesorios > Joyería"
 
                     Dim marca As Integer = reader.GetInt32("marca")
-                    Dim tipo As String = If(marca = 1, "Oro Nacional", If(marca = 2, "Oro Italy", ""))
+                    Dim type As String = ""
+                    If marca = 1 Then
+                        type = "Oro Nacional"
+                    ElseIf marca = 2 Then
+                        type = "Oro Italy"
+                    End If
+                    ws.Cell(row, 6).Value = type
 
                     Dim categoria_producto As Integer = reader.GetInt32("categoria_producto")
-                    Dim tags As String = ""
+                    Dim tags As String
                     Select Case categoria_producto
-                        Case 4 : tags = "ROSARIOS"
-                        Case 5 : tags = "PULSERAS,PULSOS"
-                        Case 6 : tags = "DIJES"
-                        Case 7 : tags = "ARETES,TOPOS"
-                        Case 8 : tags = "ARETES,CANDONGAS"
-                        Case 9 : tags = "ANILLOS"
-                        Case 11 : tags = "AROS,PULSERAS"
-                        Case 12 : tags = "TOBILLERAS"
-                        Case 14 : tags = "PULSERAS TEJIDAS,PULSERAS"
-                        Case 15 : tags = "HERRAJE"
-                        Case 16 : tags = "BOLAS"
-                        Case 19 : tags = "CADENAS,CADENAS 45"
-                        Case 20 : tags = "CADENAS,CADENAS 50"
-                        Case 21 : tags = "CADENAS,CADENAS 55"
-                        Case 22 : tags = "CADENAS,CADENAS 60"
-                        Case 23 : tags = "CADENAS,CADENAS 65"
-                        Case 24 : tags = "CADENAS,CADENAS 70"
-                        Case 25 : tags = "CADENAS,CADENAS 40"
-                        Case 26 : tags = "ANILLOS,ANILLOS MUJER"
-                        Case 27 : tags = "ANILLOS,ANILLOS HOMBRE"
-                        Case 29 : tags = "PULSERAS,PULSERAS BEBE"
-                        Case 33 : tags = "CADENAS,GARGANTILLAS"
-                        Case 44 : tags = "ARETES,TOPOS"
-                        Case 38 : tags = "ANILLOS, ANILLOS 15"
+                        Case 4
+                            tags = "ROSARIOS"
+                        Case 5
+                            tags = "PULSERAS,PULSOS"
+                        Case 6
+                            tags = "DIJES"
+                        Case 7
+                            tags = "ARETES,TOPOS"
+                        Case 8
+                            tags = "ARETES,CANDONGAS"
+                        Case 9
+                            tags = "ANILLOS"
+                        Case 11
+                            tags = "AROS,PULSERAS"
+                        Case 12
+                            tags = "TOBILLERAS"
+                        Case 14
+                            tags = "PULSERAS TEJIDAS,PULSERAS"
+                        Case 15
+                            tags = "HERRAJE"
+                        Case 16
+                            tags = "BOLAS"
+                        Case 19
+                            tags = "CADENAS,CADENAS 45"
+                        Case 20
+                            tags = "CADENAS,CADENAS 50"
+                        Case 21
+                            tags = "CADENAS,CADENAS 55"
+                        Case 22
+                            tags = "CADENAS,CADENAS 60"
+                        Case 23
+                            tags = "CADENAS,CADENAS 65"
+                        Case 24
+                            tags = "CADENAS,CADENAS 70"
+                        Case 25
+                            tags = "CADENAS,CADENAS 40"
+                        Case 26
+                            tags = "ANILLOS,ANILLOS MUJER"
+                        Case 27
+                            tags = "ANILLOS,ANILLOS HOMBRE"
+                        Case 29
+                            tags = "PULSERAS,PULSERAS BEBE"
+                        Case 33
+                            tags = "CADENAS,GARGANTILLAS"
+                        Case Else
+                            tags = ""
                     End Select
+                    ws.Cell(row, 7).Value = tags
+                    ws.Cell(row, 8).Value = "VERDADERO"
+                    ws.Cell(row, 9).Value = "Title"
+                    ws.Cell(row, 10).Value = "Default Title"
+                    ws.Cell(row, 11).Value = ""
+                    ws.Cell(row, 12).Value = ""
+                    ws.Cell(row, 13).Value = ""
+                    ws.Cell(row, 14).Value = ""
 
-                    'Dim referencia As String = reader("referencia").ToString()
+                    'Dim id As Integer = reader("id")
+                    'ws.Cell(row, 15).Value = id.ToString()
+                    ws.Cell(row, 15).Value = reader("referencia").ToString()
+
                     Dim peso As Double = reader.GetDouble("peso")
-                    Dim pesoStr As String = peso.ToString("0.0", System.Globalization.CultureInfo.InvariantCulture) ' Con punto
-                    Dim valorUnitario As String = reader.GetDecimal("valor_unitario").ToString("0.00").Replace(".", ",") ' Para CSV con coma decimal
+                    Dim cellpeso As IXLCell = ws.Cell(row, 16)
+                    cellpeso.Value = peso.ToString("0.0", System.Globalization.CultureInfo.InvariantCulture)
+                    cellpeso.Style.NumberFormat.NumberFormatId = 4 ' Formato numérico sin decimales
 
-                    ' Datos en el mismo orden que las cabeceras
-                    Dim rowData As New List(Of String) From {
-                    $"""{handle}""",
-                    QuoteIfNeeded(title),
-                    QuoteIfNeeded(bodyHTML),
-                    vendor,
-                    productCategory,
-                    tipo,
-                    $"""{tags}""",
-                    "VERDADERO",
-                    "Title",
-                    "Default Title",
-                    "", "", "", "",
-                    referencia,
-                    pesoStr,
-                    "shopify",
-                    "",
-                    "deny",
-                    "manual",
-                    QuoteIfNeeded(valorUnitario),
-                    "",
-                    "VERDADERO",
-                    "VERDADERO",
-                    "", "", "", "", "FALSO", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "g", "FALSO", "", "", "", "active"
-                }
+                    ws.Cell(row, 17).Value = "shopify"
+                    ws.Cell(row, 18).Value = ""
+                    ws.Cell(row, 19).Value = "deny"
+                    ws.Cell(row, 20).Value = "manual"
 
-                    sw.WriteLine(String.Join(",", rowData))
+                    Dim vunitario As String = reader.GetDecimal("valor_unitario")
+                    Dim cell As IXLCell = ws.Cell(row, 21)
+                    cell.Value = vunitario
+                    cell.Style.NumberFormat.NumberFormatId = 4 ' Formato numérico sin decimales
+
+                    ws.Cell(row, 22).Value = ""
+                    ws.Cell(row, 23).Value = "VERDADERO"
+                    ws.Cell(row, 24).Value = "VERDADERO"
+                    ws.Cell(row, 25).Value = ""
+                    ws.Cell(row, 26).Value = ""
+                    ws.Cell(row, 27).Value = ""
+                    ws.Cell(row, 28).Value = ""
+                    ws.Cell(row, 29).Value = "FALSO"
+                    ws.Cell(row, 30).Value = ""
+                    ws.Cell(row, 31).Value = ""
+                    ws.Cell(row, 32).Value = ""
+                    ws.Cell(row, 33).Value = ""
+                    ws.Cell(row, 34).Value = ""
+                    ws.Cell(row, 35).Value = ""
+                    ws.Cell(row, 36).Value = ""
+                    ws.Cell(row, 37).Value = ""
+                    ws.Cell(row, 38).Value = ""
+                    ws.Cell(row, 39).Value = ""
+                    ws.Cell(row, 40).Value = ""
+                    ws.Cell(row, 41).Value = ""
+                    ws.Cell(row, 42).Value = ""
+                    ws.Cell(row, 43).Value = ""
+                    ws.Cell(row, 44).Value = ""
+                    ws.Cell(row, 45).Value = ""
+                    ws.Cell(row, 46).Value = "g"
+                    ws.Cell(row, 47).Value = "FALSO"
+                    ws.Cell(row, 48).Value = ""
+                    ws.Cell(row, 49).Value = ""
+                    ws.Cell(row, 50).Value = ""
+                    ws.Cell(row, 51).Value = "active"
+                    row += 1 'Incrementamos el número de fila para agregar los siguientes datos en la siguiente fila
                 End While
+                'Cerrar el lector y la conexión a la base de datos
+                reader.Close()
+                conexion.Close()
 
-            End Using
+                'Guardar el archivo de Excel y cerrar la aplicación Excel
+                Dim saveFileDialog1 As New SaveFileDialog()
+                saveFileDialog1.Filter = "Archivo de Excel (*.xlsx)|*.xlsx"
+                saveFileDialog1.Title = "Guardar como"
+                saveFileDialog1.ShowDialog()
 
-            reader.Close()
-            conexion.Close()
-            MsgBox("Archivo CSV guardado con éxito", vbInformation, "Guardado")
+                If saveFileDialog1.FileName <> "" Then
+                    wb.SaveAs(saveFileDialog1.FileName)
+                    MsgBox("Archivo guardado con éxito", vbInformation, "Guardado")
+                Else
+                    MsgBox("Error al guardar el archivo", vbCritical, "Error")
+                End If
 
-        Catch ex As Exception
-            MessageBox.Show("Error al generar CSV: " & ex.Message)
-        End Try
+            Catch ex As Exception
+                MessageBox.Show("Ha ocurrido un error al generar el archivo: " & ex.Message)
+            End Try
+        End If
     End Sub
 
     Private Function QuoteIfNeeded(valor As String) As String
@@ -2176,93 +2267,63 @@ Public Class Registro
 
     Private Sub btn_actualizar_precios_Click(sender As Object, e As EventArgs) Handles btn_actualizar_precios.Click
         Try
-            ' Seleccionar archivo Excel de entrada
-            MessageBox.Show("Por favor, seleccione el archivo descargado desde Effi que contiene los IDs y las Referencias de los productos", "Seleccionar archivo de Effi", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Dim openFileDialog1 As New OpenFileDialog()
-            openFileDialog1.Filter = "Archivos Excel (*.xlsx)|*.xlsx"
-            openFileDialog1.Title = "Seleccionar archivo con IDs y Referencias"
-
-            If openFileDialog1.ShowDialog() <> DialogResult.OK Then Exit Sub
-
-            ' Leer el archivo Excel
-            Dim dicReferencias As New Dictionary(Of String, String) ' referencia -> id
-            Using workbook = New XLWorkbook(openFileDialog1.FileName)
-                Dim worksheet = workbook.Worksheets.First()
-                Dim row = 2
-                While Not String.IsNullOrEmpty(worksheet.Cell(row, 1).GetString())
-                    Dim id As String = worksheet.Cell(row, 1).GetString()
-                    Dim referencia As String = worksheet.Cell(row, 2).GetString()
-                    If Not dicReferencias.ContainsKey(referencia) Then
-                        dicReferencias.Add(referencia, id)
-                    End If
-                    row += 1
-                End While
-            End Using
-
-            btn_actualizar_precios.Enabled = False
-            lblProcesando.Visible = True
-            ProgressBar1.Visible = True
-            ProgressBar1.Minimum = 0
-            ProgressBar1.Maximum = dicReferencias.Count
-            ProgressBar1.Value = 0
-            Application.DoEvents()
-
-            ' Consultar base de datos
-            Dim resultados As New List(Of Tuple(Of String, Decimal)) ' id, valor_unitario
+            'Abrir la conexión a la base de datos
             conexion.Open()
-            Dim i As Integer = 0
-            For Each ref In dicReferencias.Keys
-                Dim cmd As New MySql.Data.MySqlClient.MySqlCommand("SELECT valor_unitario FROM productos WHERE referencia = @referencia LIMIT 1", conexion)
-                cmd.Parameters.AddWithValue("@referencia", ref)
-                Dim result = cmd.ExecuteScalar()
-                If result IsNot Nothing AndAlso Not IsDBNull(result) Then
-                    resultados.Add(Tuple.Create(dicReferencias(ref), Convert.ToDecimal(result)))
-                End If
-                i += 1
-                ProgressBar1.Value = i
-                Application.DoEvents()
-            Next
-            conexion.Close()
 
-            ' Crear archivo Excel de salida
-            Dim wb As New XLWorkbook()
-            Dim ws = wb.Worksheets.Add("Resultados")
+            'Crear un objeto para manejar el archivo de Excel
+            Dim wb As New ClosedXML.Excel.XLWorkbook()
+            Dim ws As IXLWorksheet = wb.Worksheets.Add("Productos")
+
+            'Ejecutar la consulta SQL para obtener los datos de la tabla Productos
+            Dim sql As String = "SELECT id, referencia, valor_unitario FROM productos"
+            Dim cmd As New MySql.Data.MySqlClient.MySqlCommand(sql, conexion)
+            Dim reader As MySql.Data.MySqlClient.MySqlDataReader = cmd.ExecuteReader()
+
+            'Escribir los encabezados de las columnas en la hoja de Excel
             ws.Cell(1, 1).Value = "ID artículo Effi *"
             ws.Cell(1, 2).Value = "ID tarifa de precio Effi *"
             ws.Cell(1, 3).Value = "Precio antes de impuestos *"
 
-            Dim rowIndex As Integer = 2
-            For Each item In resultados
-                ws.Cell(rowIndex, 1).Value = item.Item1   ' ID 
-                ws.Cell(rowIndex, 2).Value = 1            ' ID tarifa fija
-                ws.Cell(rowIndex, 3).Value = item.Item2   ' valor_unitario
-                rowIndex += 1
-            Next
+            'Escribir los datos de la tabla Productos en la hoja de Excel
+            Dim row As Integer = 2
+            While reader.Read()
+                'Obtener referencia y manejar los valores NULL
+                Dim referencia As String
+                If IsDBNull(reader("referencia")) OrElse reader("referencia").ToString() = "" Then
+                    referencia = reader("id").ToString() 'Usar el id si referencia es NULL
+                Else
+                    referencia = reader("referencia").ToString()
+                End If
 
-            ' Guardar archivo
+                'Escribir los datos en el archivo de Excel
+                ws.Cell(row, 1).Value = referencia 'Referencia o ID
+                ws.Cell(row, 2).Value = 1
+
+                Dim v_unitario As Decimal = reader.GetDecimal("valor_unitario")
+                ws.Cell(row, 3).Value = v_unitario.ToString()
+
+                row += 1
+            End While
+
+            'Cerrar el lector y la conexión a la base de datos
+            reader.Close()
+            conexion.Close()
+
+            'Guardar el archivo de Excel
             Dim saveFileDialog1 As New SaveFileDialog()
             saveFileDialog1.Filter = "Archivo de Excel (*.xlsx)|*.xlsx"
-            saveFileDialog1.Title = "Guardar archivo generado"
-            If saveFileDialog1.ShowDialog() = DialogResult.OK Then
+            saveFileDialog1.Title = "Guardar como"
+            saveFileDialog1.ShowDialog()
+
+            If saveFileDialog1.FileName <> "" Then
                 wb.SaveAs(saveFileDialog1.FileName)
-                MsgBox("Archivo generado correctamente.", vbInformation)
-                ProgressBar1.Visible = False
-                lblProcesando.Visible = False
-                btn_actualizar_precios.Enabled = True
+                MsgBox("Archivo guardado con éxito, recuerde actualizar manualmente el valor de los productos registrados como 'Prenda' ", vbInformation, "Guardado")
             Else
-                MsgBox("No se guardó el archivo.", vbExclamation)
-                ProgressBar1.Visible = False
-                lblProcesando.Visible = False
-                btn_actualizar_precios.Enabled = True
+                MsgBox("Error al guardar el archivo", vbCritical, "Error")
             End If
-
-        Catch ex As IOException When ex.Message.Contains("because it is being used by another process")
-            MsgBox("El archivo seleccionado está siendo utilizado por otro programa (como Excel). Por favor, cierre el archivo e intente nuevamente.", vbExclamation, "Archivo en uso")
-            If conexion.State = ConnectionState.Open Then conexion.Close()
-
         Catch ex As Exception
-            MsgBox("Error: " & ex.Message, vbCritical)
-            If conexion.State = ConnectionState.Open Then conexion.Close()
+            MessageBox.Show("Error al obtener datos: " + ex.Message)
+            conexion.Close()
         End Try
     End Sub
 
